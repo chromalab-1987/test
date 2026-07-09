@@ -4,95 +4,141 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Test de ADN Visual · Chromalab</title>
+
+<!-- OG / Social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Test de ADN Visual · Chromalab">
+<meta property="og:description" content="30 preguntas para descubrir el ADN visual de tu marca: 6 dimensiones, tu nivel de madurez y las alertas de tu identidad. Diagnóstico gratuito e instantáneo.">
+<meta property="og:url" content="https://chromalab.com.ar/test">
+<!-- ⚠️ Subí una imagen de 1200x630 y reemplazá esta URL para que el share se vea con preview -->
+<meta property="og:image" content="https://chromalab.com.ar/og-test-adn.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Descubrí el ADN visual de tu marca en 4 minutos. 6 dimensiones, diagnóstico estratégico personalizado y descargable en PDF.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --onix:   #0F0F0F;
-    --lino:   #F2F0E9;
-    --violet: #4B0082;
-    --violet-light: #EDE0F5;
-    --violet-mid:   #7B2FBE;
-    --lino-dark:    #E2DFD5;
-    --lino-darker:  #CAC7BC;
-    --text-muted:   #6B6860;
+    --bg:          #09090f;
+    --bg-2:        #0f0f1a;
+    --card:        #111120;
+    --card-border: rgba(139,92,246,.16);
+    --purple:      #8b5cf6;
+    --purple-deep: #9B2FFF;
+    --magenta:     #d946ef;
+    --lino:        #F5F0E8;
+    --lino-soft:   #f0eeff;
+    --text-muted:  #a9a4b8;
+    --text-dim:    #6e6a7e;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: Arial, sans-serif;
-    background: var(--lino);
-    color: var(--onix);
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-weight: 300;
+    background: var(--bg);
+    color: var(--lino);
     min-height: 100vh;
-    padding: 0;
   }
+
+  h1, h2, h3, .brand-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  #noise {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    opacity: .05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .page { position: relative; z-index: 2; }
 
   /* ── HEADER ── */
   .site-header {
-    background: var(--onix);
-    padding: 18px 32px;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--card-border);
+    padding: 16px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .site-header .logo {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--lino);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-  .site-header .logo span { color: var(--violet-mid); }
   .header-link {
     font-size: 11px;
-    color: var(--lino-darker);
+    color: var(--text-muted);
     text-decoration: none;
     letter-spacing: .5px;
+    transition: color .15s;
   }
   .header-link:hover { color: var(--lino); }
 
   /* ── HERO ── */
   .hero {
-    background: var(--onix);
-    padding: 56px 32px 48px;
+    background: var(--bg-2);
+    padding: 60px 32px 52px;
     text-align: center;
-    border-bottom: 3px solid var(--violet);
+    border-bottom: 1px solid var(--card-border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; left: 50%; bottom: -140px; transform: translateX(-50%);
+    width: 520px; height: 240px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(139,92,246,.22), transparent 70%);
+    pointer-events: none;
   }
   .hero h1 {
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 34px;
+    font-weight: 800;
     color: var(--lino);
-    line-height: 1.3;
-    margin-bottom: 12px;
+    line-height: 1.25;
+    margin-bottom: 14px;
     letter-spacing: -.3px;
   }
+  .hero h1 em { color: var(--purple); font-style: italic; }
   .hero p {
     font-size: 14px;
-    color: var(--lino-darker);
-    max-width: 480px;
-    margin: 0 auto 24px;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 12px;
+    line-height: 1.75;
+  }
+  .hero .hero-note {
+    font-size: 12px;
+    color: var(--text-dim);
+    max-width: 460px;
+    margin: 0 auto 26px;
     line-height: 1.7;
+    font-style: italic;
   }
-  .hero-badges {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
+  .hero-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; position: relative; }
   .badge {
-    padding: 5px 14px;
-    border-radius: 20px;
+    padding: 6px 16px;
+    border-radius: 30px;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    border: 1px solid;
+    border: 1px solid rgba(139,92,246,.45);
+    color: #c8b3ff;
+    background: rgba(139,92,246,.12);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .badge.magenta {
+    border-color: rgba(217,70,239,.45);
+    color: #f0aaff;
+    background: rgba(217,70,239,.10);
   }
 
   /* ── MAIN WRAP ── */
-  .main { max-width: 620px; margin: 0 auto; padding: 36px 20px 60px; }
+  .main { max-width: 640px; margin: 0 auto; padding: 36px 20px 70px; }
 
   /* ── PROGRESS ── */
   .progress-wrap { margin-bottom: 24px; }
@@ -100,68 +146,69 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 9px;
   }
   .prog-section {
     font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1.3px;
+    letter-spacing: 1.4px;
     text-transform: uppercase;
-    color: var(--violet);
+    color: var(--purple);
+    font-family: 'DM Sans', sans-serif;
   }
-  .prog-count {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-muted);
-  }
+  .prog-count { font-size: 11px; font-weight: 500; color: var(--text-muted); }
   .prog-bar {
     height: 3px;
-    background: var(--lino-dark);
+    background: rgba(139,92,246,.15);
     border-radius: 3px;
     overflow: hidden;
   }
   .prog-fill {
     height: 3px;
-    background: var(--violet);
+    background: linear-gradient(90deg, var(--purple), var(--magenta));
     border-radius: 3px;
     transition: width .4s ease;
   }
 
   /* ── QUESTION CARD ── */
   .q-card {
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid var(--lino-dark);
+    background: var(--card);
+    border-radius: 18px;
+    border: 1px solid var(--card-border);
     overflow: hidden;
   }
-  .q-card-body { padding: 30px 28px; }
+  .q-card-body { padding: 32px 30px; }
 
   .sec-pill {
     display: inline-block;
-    padding: 4px 14px;
-    border-radius: 20px;
+    padding: 5px 16px;
+    border-radius: 30px;
     font-size: 9px;
     font-weight: 700;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.3px;
     text-transform: uppercase;
-    background: var(--violet-light);
-    color: var(--violet);
-    margin-bottom: 16px;
+    background: rgba(139,92,246,.14);
+    color: #c8b3ff;
+    border: 1px solid rgba(139,92,246,.3);
+    margin-bottom: 18px;
+    font-family: 'DM Sans', sans-serif;
   }
 
   .q-num {
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 1px;
-    color: var(--lino-darker);
+    color: var(--text-dim);
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .q-text {
-    font-size: 17px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 19px;
     font-weight: 700;
-    color: var(--onix);
-    line-height: 1.45;
+    color: var(--lino);
+    line-height: 1.5;
     margin-bottom: 26px;
   }
 
@@ -169,25 +216,31 @@
 
   .opt {
     padding: 16px 18px;
-    border-radius: 10px;
-    border: 1.5px solid var(--lino-dark);
+    border-radius: 14px;
+    border: 1.5px solid rgba(139,92,246,.18);
     cursor: pointer;
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    background: var(--lino);
-    transition: border-color .15s, background .15s;
+    background: var(--bg-2);
+    transition: border-color .15s, background .15s, transform .1s;
     text-align: left;
     width: 100%;
+    color: inherit;
+    font-family: inherit;
   }
-  .opt:hover { border-color: var(--violet); background: var(--violet-light); }
-  .opt.selected { border-color: var(--violet); background: var(--violet-light); }
+  .opt:hover { border-color: var(--purple); background: rgba(139,92,246,.08); }
+  .opt.selected {
+    border-color: var(--purple);
+    background: rgba(139,92,246,.14);
+    transform: scale(.995);
+  }
 
   .opt-letter {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: var(--lino-dark);
+    background: rgba(139,92,246,.15);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -197,180 +250,175 @@
     flex-shrink: 0;
     transition: background .15s, color .15s;
   }
-  .opt.selected .opt-letter { background: var(--violet); color: var(--lino); }
+  .opt.selected .opt-letter {
+    background: linear-gradient(135deg, var(--purple), var(--magenta));
+    color: #fff;
+  }
 
-  .opt-title { font-size: 13px; font-weight: 700; color: var(--onix); margin-bottom: 3px; }
-  .opt-desc  { font-size: 11px; color: var(--text-muted); line-height: 1.55; }
+  .opt-title { font-size: 13px; font-weight: 700; color: var(--lino); margin-bottom: 3px; }
+  .opt-desc  { font-size: 11.5px; color: var(--text-muted); line-height: 1.6; }
 
   /* ── FOOTER CARD ── */
   .q-card-footer {
-    padding: 16px 28px;
-    border-top: 1px solid var(--lino-dark);
-    background: var(--lino);
+    padding: 16px 30px;
+    border-top: 1px solid var(--card-border);
+    background: var(--bg-2);
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   .btn-back {
-    padding: 9px 18px;
-    border-radius: 8px;
-    border: 1px solid var(--lino-dark);
-    background: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(139,92,246,.3);
+    background: transparent;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-muted);
     cursor: pointer;
-    transition: background .12s;
+    font-family: inherit;
+    transition: color .15s, border-color .15s;
   }
-  .btn-back:hover { background: var(--lino-dark); }
+  .btn-back:hover { color: var(--lino); border-color: var(--purple); }
 
   .btn-next {
-    padding: 10px 24px;
-    border-radius: 8px;
+    padding: 11px 26px;
+    border-radius: 30px;
     border: none;
-    background: var(--violet);
+    background: linear-gradient(135deg, var(--purple), var(--magenta));
     font-size: 12px;
     font-weight: 700;
-    color: var(--lino);
+    color: #fff;
     cursor: pointer;
     letter-spacing: .3px;
-    transition: background .15s, opacity .15s;
+    font-family: inherit;
+    transition: opacity .15s, box-shadow .15s;
   }
-  .btn-next:hover:not(:disabled) { background: var(--violet-mid); }
-  .btn-next:disabled { background: var(--lino-darker); color: var(--lino); cursor: not-allowed; opacity: .6; }
+  .btn-next:hover:not(:disabled) { box-shadow: 0 4px 20px rgba(139,92,246,.4); }
+  .btn-next:disabled { opacity: .35; cursor: not-allowed; }
 
   /* ── RESULT ── */
-  /* ── RESULT PDF ── */
   .pdf-result {
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid var(--lino-dark);
+    background: var(--card);
+    border-radius: 18px;
+    border: 1px solid var(--card-border);
     overflow: hidden;
-    box-shadow: 0 4px 24px rgba(0,0,0,.10);
+    box-shadow: 0 8px 40px rgba(0,0,0,.4);
   }
-  .pdf-result-header { padding: 30px 32px 24px; }
-  .pdf-result-header .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; opacity: .6; }
-  .pdf-result-header h2 { font-size: 22px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
-  .pdf-result-header .sub { font-size: 11px; opacity: .65; line-height: 1.6; }
-  .pdf-accent { height: 4px; }
-  .pdf-result-body { padding: 26px 32px; }
+  .pdf-result-header { padding: 32px 32px 26px; background: var(--bg-2); }
+  .pdf-result-header .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: var(--purple); font-family: 'DM Sans', sans-serif; }
+  .pdf-result-header h2 {
+    font-size: 21px; font-weight: 700; line-height: 1.45;
+    margin-bottom: 8px; color: var(--lino);
+  }
+  .pdf-result-header .sub { font-size: 11px; color: var(--text-dim); line-height: 1.6; }
+  .pdf-accent { height: 3px; background: linear-gradient(90deg, var(--purple), var(--magenta)); }
+  .pdf-result-body { padding: 28px 32px; }
   .pdf-sec {
     font-size: 9px; font-weight: 700; letter-spacing: 1.8px;
-    text-transform: uppercase; margin-bottom: 14px; color: #AAA;
+    text-transform: uppercase; margin-bottom: 14px; color: var(--text-dim);
+    font-family: 'DM Sans', sans-serif;
   }
   .pdf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
   .pdf-card {
     padding: 14px 14px 14px 18px;
-    border-radius: 6px;
+    border-radius: 10px;
     border-left: 5px solid transparent;
   }
   .pdf-card .pc-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
-  .pdf-card .pc-name  { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .pdf-card .pc-name  { font-size: 14px; font-weight: 700; margin-bottom: 3px; font-family: 'Playfair Display', serif; font-style: italic; }
   .pdf-card .pc-sub   { font-size: 10px; line-height: 1.5; }
-  .pdf-divider { height: 1px; background: #EAECF0; margin: 18px 0; }
+  .pdf-divider { height: 1px; background: rgba(139,92,246,.15); margin: 20px 0; }
   .pdf-detail {
-    background: var(--lino);
-    border-radius: 4px;
-    border-left: 4px solid var(--violet);
-    padding: 13px 15px;
+    background: var(--bg-2);
+    border-radius: 8px;
+    border-left: 4px solid var(--purple);
+    padding: 14px 16px;
     margin-bottom: 10px;
   }
-  .pdf-detail h4 { font-size: 11px; font-weight: 700; color: var(--onix); margin-bottom: 5px; }
-  .pdf-detail p  { font-size: 11px; color: var(--text-muted); line-height: 1.65; }
+  .pdf-detail h4 { font-size: 11.5px; font-weight: 700; color: var(--lino); margin-bottom: 5px; font-family: 'DM Sans', sans-serif; }
+  .pdf-detail p  { font-size: 11px; color: var(--text-muted); line-height: 1.7; }
   .pdf-result-footer {
-    background: var(--lino);
-    padding: 14px 32px;
-    border-top: 1px solid var(--lino-dark);
+    background: var(--bg-2);
+    padding: 18px 32px;
+    border-top: 1px solid var(--card-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
   }
-  .pdf-result-footer p { font-size: 10px; color: var(--lino-darker); }
-  .pdf-result-footer a { color: var(--violet); text-decoration: none; font-weight: 700; }
+  .pdf-result-footer p { font-size: 10px; color: var(--text-dim); }
+  .pdf-result-footer a { color: var(--purple); text-decoration: none; font-weight: 700; }
   .pdf-result-footer a:hover { text-decoration: underline; }
-  .pdf-result-bar { height: 6px; background: var(--onix); }
-  .pdf-result-bar-inner { height: 4px; background: var(--violet); }
+  .pdf-result-bar { height: 6px; background: var(--bg); }
+  .pdf-result-bar-inner { height: 4px; background: linear-gradient(90deg, var(--purple), var(--magenta)); }
   .btn-restart {
-    padding: 10px 22px; border-radius: 8px; border: none;
-    background: var(--violet); color: var(--lino);
-    font-size: 12px; font-weight: 700; cursor: pointer; transition: background .15s;
+    padding: 10px 24px; border-radius: 30px; border: none;
+    background: linear-gradient(135deg, var(--purple), var(--magenta));
+    color: #fff;
+    font-size: 12px; font-weight: 700; cursor: pointer;
+    font-family: inherit;
+    transition: box-shadow .15s;
   }
-  .btn-restart:hover { background: var(--violet-mid); }
+  .btn-restart:hover { box-shadow: 0 4px 20px rgba(139,92,246,.4); }
 
   /* ── SITE FOOTER ── */
   .site-footer {
-    background: var(--onix);
-    padding: 24px 32px;
+    background: var(--bg-2);
+    padding: 26px 32px;
     text-align: center;
-    border-top: 3px solid var(--violet);
+    border-top: 1px solid var(--card-border);
   }
-  .site-footer p { font-size: 11px; color: var(--lino-darker); }
-  .site-footer a { color: var(--violet-mid); text-decoration: none; }
+  .site-footer p { font-size: 11px; color: var(--text-dim); }
+  .site-footer a { color: var(--purple); text-decoration: none; }
   .site-footer a:hover { color: var(--lino); }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .hero h1 { font-size: 22px; }
-    .result-grid { grid-template-columns: 1fr; }
-    .q-card-body, .q-card-footer, .result-body, .result-header, .result-footer { padding-left: 18px; padding-right: 18px; }
-    .btn-back { display: none; }
-  }
-
-
-
+  /* ── DIAG BLOCKS ── */
   .diag-block {
-    background: #0F0F0F;
-    border-radius: 8px;
+    background: var(--bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
     padding: 18px 20px;
     margin-bottom: 10px;
   }
   .diag-block .diag-label {
     font-size: 9px; font-weight: 700; letter-spacing: 1.6px;
-    text-transform: uppercase; color: #7B2FBE; margin-bottom: 8px;
+    text-transform: uppercase; color: var(--magenta); margin-bottom: 8px;
+    font-family: 'DM Sans', sans-serif;
   }
-  .diag-block .diag-text {
-    font-size: 12px; color: #F2F0E9; line-height: 1.7;
-  }
+  .diag-block .diag-text { font-size: 12px; color: var(--lino-soft); line-height: 1.75; }
+
   .madurez-wrap { margin-bottom: 20px; }
-  .madurez-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 8px;
-  }
-  .madurez-nivel {
-    font-size: 14px; font-weight: 700;
-  }
-  .madurez-desc {
-    font-size: 11px; color: var(--text-muted); line-height: 1.6; margin-top: 6px;
-  }
-  .madurez-bar-bg {
-    height: 8px; background: var(--lino-dark); border-radius: 8px; overflow: hidden;
-  }
-  .madurez-bar-fill {
-    height: 8px; border-radius: 8px; transition: width 1s ease;
-  }
+  .madurez-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .madurez-nivel { font-size: 15px; font-weight: 700; font-family: 'Playfair Display', serif; font-style: italic; }
+  .madurez-desc { font-size: 11px; color: var(--text-muted); line-height: 1.7; margin-top: 8px; }
+  .madurez-bar-bg { height: 8px; background: rgba(139,92,246,.12); border-radius: 8px; overflow: hidden; }
+  .madurez-bar-fill { height: 8px; border-radius: 8px; transition: width 1s ease; }
+
   .alertas-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
   .alertas-list li {
-    display: flex; gap: 10px; align-items: flex-start;
-    font-size: 11px; color: var(--text-muted); line-height: 1.6;
-    background: var(--lino);
-    padding: 10px 12px; border-radius: 6px;
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 11px; color: var(--text-muted); line-height: 1.7;
+    background: var(--bg-2);
+    border: 1px solid var(--card-border);
+    padding: 12px 14px; border-radius: 10px;
   }
   .alerta-icon {
-    width: 18px; height: 18px; border-radius: 50%;
-    background: #FEF9EC; color: #854F0B;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(217,70,239,.15); color: var(--magenta);
+    border: 1px solid rgba(217,70,239,.35);
     font-size: 10px; font-weight: 700; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
     margin-top: 1px;
   }
 
   .radar-section { margin-bottom: 28px; }
-  .radar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 8px; }
+  .radar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 8px; }
   .radar-card {
-    background: #fff;
-    border: 1px solid var(--lino-dark);
-    border-radius: 10px;
+    background: var(--bg-2);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -378,31 +426,30 @@
   }
   .radar-card .radar-title {
     font-size: 9px; font-weight: 700; letter-spacing: 1.4px;
-    text-transform: uppercase; color: var(--violet);
+    text-transform: uppercase; color: var(--purple);
     margin-bottom: 4px; text-align: center;
+    font-family: 'DM Sans', sans-serif;
   }
   .radar-card .radar-winner {
-    font-size: 12px; font-weight: 700; color: var(--onix);
+    font-size: 12px; font-weight: 700; color: var(--lino);
     margin-top: 8px; text-align: center;
-  }
-  .radar-card .radar-score {
-    font-size: 10px; color: var(--text-muted);
-    margin-top: 2px; text-align: center;
+    font-family: 'Playfair Display', serif; font-style: italic;
   }
   .radar-card canvas { display: block; }
-  @media (max-width: 520px) {
-    .radar-grid { grid-template-columns: 1fr; }
+  @media (max-width: 520px) { .radar-grid { grid-template-columns: 1fr; } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 26px; }
+    .q-card-body, .q-card-footer, .pdf-result-body, .pdf-result-header, .pdf-result-footer { padding-left: 18px; padding-right: 18px; }
   }
 
-
   @media print {
-    body { background: white; padding: 0; margin: 0; }
-    .site-header, .hero, .progress-wrap, .q-card-footer,
-    .site-footer, .btn-restart, .pdf-result-footer .btn-restart,
-    #download-btn-wrap { display: none !important; }
+    body { background: #fff; padding: 0; margin: 0; }
+    #noise, .site-header, .hero, .progress-wrap, .q-card-footer,
+    .site-footer, .btn-restart, #download-btn-wrap, #wa-wrap { display: none !important; }
     .main { padding: 0; max-width: 100%; }
     .pdf-result { box-shadow: none; border: none; border-radius: 0; }
-    .pdf-result-footer { background: white; }
     .radar-grid { grid-template-columns: 1fr 1fr; }
     .pdf-grid { grid-template-columns: 1fr 1fr; }
   }
@@ -410,58 +457,61 @@
   /* ── EMAIL MODAL ── */
   .email-modal-overlay {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,.72);
+    background: rgba(4,4,8,.82);
     display: flex; align-items: center; justify-content: center;
     z-index: 9999; padding: 20px;
     -webkit-overflow-scrolling: touch;
   }
   .email-modal {
-    background: #fff; border-radius: 14px; padding: 32px 28px;
-    max-width: 420px; width: 100%;
-    box-shadow: 0 12px 48px rgba(0,0,0,.3);
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 18px; padding: 34px 30px;
+    max-width: 430px; width: 100%;
+    box-shadow: 0 16px 64px rgba(0,0,0,.6);
     position: relative; z-index: 10000;
   }
   .email-modal .modal-eyebrow {
     font-size: 9px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--violet); margin-bottom: 12px;
+    text-transform: uppercase; color: var(--purple); margin-bottom: 12px;
+    font-family: 'DM Sans', sans-serif;
   }
   .email-modal h3 {
-    font-size: 20px; font-weight: 700; color: var(--onix);
-    line-height: 1.3; margin-bottom: 10px;
+    font-size: 21px; font-weight: 700; color: var(--lino);
+    line-height: 1.35; margin-bottom: 10px;
   }
-  .email-modal p {
-    font-size: 13px; color: var(--text-muted);
-    line-height: 1.7; margin-bottom: 22px;
-  }
+  .email-modal p { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 22px; }
   .email-modal input[type="email"] {
-    width: 100%; padding: 13px 16px; border-radius: 8px;
-    border: 1.5px solid var(--lino-dark); font-size: 14px;
-    color: var(--onix); background: var(--lino); margin-bottom: 8px;
+    width: 100%; padding: 13px 18px; border-radius: 30px;
+    border: 1.5px solid rgba(139,92,246,.25); font-size: 14px;
+    color: var(--lino); background: var(--bg-2); margin-bottom: 8px;
     outline: none; transition: border-color .15s; box-sizing: border-box;
+    font-family: inherit;
   }
-  .email-modal input[type="email"]:focus { border-color: var(--violet); }
-  .email-modal .modal-error {
-    font-size: 11px; color: #E74C3C; margin-bottom: 10px; display: none;
-  }
+  .email-modal input[type="email"]::placeholder { color: var(--text-dim); }
+  .email-modal input[type="email"]:focus { border-color: var(--purple); }
+  .email-modal .modal-error { font-size: 11px; color: #ff6b81; margin: 0 0 10px 6px; display: none; }
   .email-modal .btn-modal-primary {
-    width: 100%; padding: 14px; border-radius: 8px; border: none;
-    background: var(--violet); color: var(--lino); font-size: 13px;
+    width: 100%; padding: 14px; border-radius: 30px; border: none;
+    background: linear-gradient(135deg, var(--purple), var(--magenta));
+    color: #fff; font-size: 13px;
     font-weight: 700; cursor: pointer; letter-spacing: .3px;
-    transition: background .15s; margin-bottom: 10px;
+    transition: box-shadow .15s; margin-bottom: 10px;
+    font-family: inherit;
   }
-  .email-modal .btn-modal-primary:hover:not(:disabled) { background: var(--violet-mid); }
+  .email-modal .btn-modal-primary:hover:not(:disabled) { box-shadow: 0 4px 24px rgba(139,92,246,.45); }
   .email-modal .btn-modal-primary:disabled { opacity: .6; cursor: not-allowed; }
-
 </style>
 </head>
 <body>
+
+<div id="noise"></div>
+<div class="page">
 
 <!-- EMAIL MODAL -->
 <div id="email-modal" class="email-modal-overlay" style="display:none" role="dialog" aria-modal="true">
   <div class="email-modal">
     <div class="modal-eyebrow">Test de ADN Visual · Chromalab</div>
-    <h3>¿A dónde enviamos tu diagnóstico?</h3>
-    <p>Ingresá tu correo para recibir el link a tu resultado. Vas a poder volver a verlo en cualquier momento — y también descargarlo en PDF ahora mismo.</p>
+    <h3>¿A dónde guardamos tu diagnóstico?</h3>
+    <p>Dejanos tu correo para guardar tu resultado y que puedas volver a verlo cuando quieras. También vas a poder descargarlo en PDF ahora mismo.</p>
     <input type="email" id="modal-email" placeholder="tu@email.com" autocomplete="email" />
     <div class="modal-error" id="modal-error">Por favor ingresá un email válido.</div>
     <button class="btn-modal-primary" id="modal-submit">Ver mi resultado →</button>
@@ -478,12 +528,14 @@
 
 <!-- HERO -->
 <div class="hero">
-  <h1>Test de ADN Visual</h1>
-  <p>36 preguntas para mapear las 6 dimensiones del ADN visual de tu marca y obtener un diagnóstico estratégico personalizado.</p>
+  <h1>Test de <em>ADN Visual</em></h1>
+  <p>30 preguntas para mapear las 6 dimensiones del ADN visual de tu marca. Al final te llevás un diagnóstico estratégico: tu perfil, tu nivel de madurez y las señales de alerta de tu identidad.</p>
+  <p class="hero-note">No necesitás tener nada definido: respondé por instinto, pensando en cómo querés que se sienta tu marca.</p>
   <div class="hero-badges">
-    <span class="badge" style="border-color:#4B0082;color:#c084fc;background:rgba(75,0,130,.25)">36 preguntas</span>
-    <span class="badge" style="border-color:#4B0082;color:#c084fc;background:rgba(75,0,130,.25)">6 dimensiones</span>
-    <span class="badge" style="border-color:#4B0082;color:#c084fc;background:rgba(75,0,130,.25)">Resultado instantáneo</span>
+    <span class="badge">30 preguntas</span>
+    <span class="badge magenta">≈ 4 minutos</span>
+    <span class="badge">6 dimensiones</span>
+    <span class="badge magenta">Resultado instantáneo</span>
   </div>
 </div>
 
@@ -493,10 +545,10 @@
   <!-- PROGRESS -->
   <div class="progress-wrap" id="progress-wrap">
     <div class="prog-header">
-      <span class="prog-section" id="prog-section">Espectro Cromático</span>
-      <span class="prog-count" id="prog-count">1 / 24</span>
+      <span class="prog-section" id="prog-section">Dimensión 1 de 6 · Espectro Cromático</span>
+      <span class="prog-count" id="prog-count">1 / 30</span>
     </div>
-    <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:4%"></div></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:3%"></div></div>
   </div>
 
   <!-- QUESTION -->
@@ -525,54 +577,65 @@
   <p>© 2026 <a href="https://chromalab.com.ar/" target="_blank">Chromalab</a> · Todos los derechos reservados</p>
 </footer>
 
+</div><!-- /.page -->
+
 <script>
+// ─────────────────────────────────────────────────────────────────────────────
+// 30 PREGUNTAS · 6 dimensiones
+// Índices: 0-5 Espectro · 6-10 Morfología · 11-15 Textura · 16-20 Ritmo
+//          21-25 Tono · 26-29 Madurez de Sistema (Escala)
+// ─────────────────────────────────────────────────────────────────────────────
 const questions = [
+  // ── ESPECTRO CROMÁTICO (6) — round-robin de 4 perfiles ──
   { section:"Espectro Cromático", text:"Si tu marca fuera un espacio físico y un cliente entra por primera vez, ¿cuál es la sensación térmica y lumínica que percibe?", a:{title:"Galería minimalista",desc:"Luz blanca, fría, techos altos y mucho aire."}, b:{title:"Estudio boutique al atardecer",desc:"Luz cálida, materiales naturales, atmósfera envolvente."} },
-  { section:"Espectro Cromático", text:"Imagina que la identidad de tu marca es un objeto que podés sostener. ¿Cómo se siente en tus manos?", a:{title:"Liviana y etérea",desc:"Como un papel de seda o cristal soplado. Colores pasteles, desaturados."}, b:{title:"Sólida y rotunda",desc:"Como un bloque de mármol o acero. Colores profundos, alto contraste."} },
+  { section:"Espectro Cromático", text:"Imaginá que la identidad de tu marca es un objeto que podés sostener. ¿Cómo se siente en tus manos?", a:{title:"Liviana y etérea",desc:"Como un papel de seda o cristal soplado. Colores pasteles, desaturados."}, b:{title:"Sólida y rotunda",desc:"Como un bloque de mármol o acero. Colores profundos, alto contraste."} },
   { section:"Espectro Cromático", text:"Cuando la marca no está hablando (sin textos, solo color), ¿qué tipo de silencio proyecta?", a:{title:"Silencio vibrante y eléctrico",desc:"Como la calma antes de una tormenta. Colores saturados, neones, energía."}, b:{title:"Silencio sereno y estable",desc:"Como un lago al amanecer. Colores tierra, neutros, balance."} },
-  { section:"Espectro Cromático", text:"En un feed lleno de ruido visual, ¿cómo decide destacar tu marca?", a:{title:"Faro de pureza",desc:"Limpieza absoluta que obliga a descansar la vista. Blancos y espacios negativos."}, b:{title:"Imán de atención",desc:"Una mancha de color audaz imposible de ignorar. Bloques sólidos y vibrantes."} },
-  { section:"Espectro Cromático", text:"Cuando tu marca toma posición en el mercado, ¿desde qué lugar lo hace?", a:{title:"Desde el poder y la sobriedad",desc:"Impone sin explicarse. Exclusividad que no necesita justificación."}, b:{title:"Desde la autenticidad radical",desc:"Nace de la tierra, no sigue tendencias. Su valor está en su origen."} },
+  { section:"Espectro Cromático", text:"En un feed lleno de ruido visual, ¿cómo decide destacar tu marca?", a:{title:"Faro de pureza",desc:"Limpieza absoluta que obliga a descansar la vista. Blancos y espacios vacíos."}, b:{title:"Imán de atención",desc:"Una mancha de color audaz imposible de ignorar. Bloques sólidos y vibrantes."} },
+  { section:"Espectro Cromático", text:"Si tu paleta fuera un material precioso que el cliente puede tocar, ¿cuál sería?", a:{title:"Terciopelo y obsidiana",desc:"Profundidad que absorbe la luz. Oscuridad con peso y elegancia."}, b:{title:"Arcilla y lino crudo",desc:"Pigmentos que vienen de la tierra. Calidez sin artificio."} },
   { section:"Espectro Cromático", text:"Después de interactuar con tu marca, ¿qué sabor cromático le queda al cliente en la memoria?", a:{title:"Claridad y optimismo",desc:"Colores claros, amarillos, turquesas."}, b:{title:"Autoridad y misterio",desc:"Colores oscuros, borgoñas, azul noche."} },
+
+  // ── MORFOLOGÍA DE MARCA (5) — eje único: recto/geométrico vs curvo/orgánico ──
   { section:"Morfología de Marca", text:"Si tu marca fuera un dibujo a mano alzada, ¿cómo se movería el lápiz sobre el papel?", a:{title:"Movimientos rectos y precisos",desc:"Ángulos, cuadrículas, orden absoluto."}, b:{title:"Movimientos fluidos y circulares",desc:"Curvas, lazos, libertad de trazo."} },
-  { section:"Morfología de Marca", text:"Imagina el logotipo rodeado de espacio en blanco. ¿Cómo interactúa con ese vacío?", a:{title:"Estructura sólida y pesada",desc:"Tipografías bold, formas cerradas que se plantan con firmeza."}, b:{title:"Estructura liviana que flota",desc:"Líneas finas, mucho interletrado, formas abiertas."} },
   { section:"Morfología de Marca", text:"Cuando un cliente 'choca' visualmente con tu marca, ¿qué sensación física debería tener?", a:{title:"Seguridad y protección",desc:"Esquinas marcadas, estructuras que parecen edificios o escudos."}, b:{title:"Amabilidad y apertura",desc:"Bordes redondeados, suavidad visual, formas que invitan al tacto."} },
-  { section:"Morfología de Marca", text:"Si miramos la marca durante 5 segundos, ¿hacia dónde parece que se desplaza su energía?", a:{title:"Hacia arriba y adelante",desc:"Morfología ascendente que sugiere crecimiento y estatus."}, b:{title:"Hacia el centro",desc:"Morfología centrípeta que sugiere comunidad, refugio y equilibrio."} },
-  { section:"Morfología de Marca", text:"Si tuvieras que tallar tu marca en madera, ¿qué tan difícil sería el trabajo?", a:{title:"Simple y esquemática",desc:"Pocas líneas, síntesis absoluta, fácil de recordar."}, b:{title:"Rica y detallada",desc:"Ornamentos sutiles, capas visuales, construcción que requiere tiempo."} },
-  { section:"Morfología de Marca", text:"¿Cómo se posiciona la estructura de la marca frente al paso del tiempo?", a:{title:"Estática y atemporal",desc:"Morfología monolítica que transmite que 'siempre estuvo ahí'."}, b:{title:"Dinámica y evolutiva",desc:"Formas que sugieren cambio, flexibilidad y adaptación constante."} },
+  { section:"Morfología de Marca", text:"Si recortaras la silueta de tu logo con una tijera, ¿qué camino sigue el corte?", a:{title:"Rectas y ángulos",desc:"El filo avanza en tramos definidos, con giros precisos."}, b:{title:"Curvas continuas",desc:"La tijera nunca se detiene: todo fluye en un mismo gesto."} },
+  { section:"Morfología de Marca", text:"¿Sobre qué base se construye la forma de tu identidad?", a:{title:"Sobre la grilla",desc:"Ejes, módulos, proporciones exactas. El orden es visible."}, b:{title:"Sobre el gesto",desc:"El trazo manda y la estructura acompaña. La mano es visible."} },
+  { section:"Morfología de Marca", text:"Si tu marca existiera en el mundo físico antes que en el papel, ¿dónde la encontraríamos?", a:{title:"En la arquitectura",desc:"Cristales, panales, fachadas. Geometría que se repite con precisión."}, b:{title:"En lo vivo",desc:"Ríos, hojas, olas. Formas que nunca se repiten igual."} },
+
+  // ── CONTRASTE DE TEXTURA (5) ──
   { section:"Contraste de Textura", text:"Si un cliente pudiera cerrar los ojos y tocar tu marca, ¿qué sensación recorrería sus dedos?", a:{title:"Lisa, fría y pulida",desc:"Como el cristal o el aluminio anodizado."}, b:{title:"Con carácter y calidez",desc:"Como el papel de alto gramaje o la piedra natural."} },
   { section:"Contraste de Textura", text:"¿Cómo interactúa la identidad de tu marca con la iluminación de su entorno?", a:{title:"Refleja la luz",desc:"Brillante, limpia y nítida. Acabados glossy, alta definición."}, b:{title:"Absorbe la luz",desc:"Mate, profunda y contenida. Texturas orgánicas, grano cinematográfico."} },
-  { section:"Contraste de Textura", text:"Si tuviéramos que buscar el 'material' del que está hecha la marca, ¿dónde lo encontraríamos?", a:{title:"En un laboratorio digital",desc:"Materiales sintéticos, fibras ópticas y acabados perfectos."}, b:{title:"En un taller o la naturaleza",desc:"Madera, fibras naturales, pigmentos minerales e imperfecciones ricas."} },
   { section:"Contraste de Textura", text:"Cuando te acercás mucho a los elementos gráficos de la marca, ¿qué descubrís?", a:{title:"Nitidez absoluta",desc:"Bordes vectoriales impecables y una limpieza quirúrgica."}, b:{title:"Un grano o trama",desc:"Pequeñas irregularidades, texturas de impresión que le dan profundidad."} },
   { section:"Contraste de Textura", text:"¿Qué temperatura transmite el ambiente visual de tu identidad?", a:{title:"Clima controlado",desc:"Aire acondicionado, tecnología, aséptico y eficiente."}, b:{title:"Clima atmosférico",desc:"Humedad, tierra, sol. Algo que se siente vivo y cambiante."} },
-  { section:"Contraste de Textura", text:"¿Cómo querés que envejezca la estética de tu marca?", a:{title:"Impecable siempre",desc:"Que parezca nueva y reluciente siempre. Estética new-tech."}, b:{title:"Que gane carácter",desc:"Que la pátina o el desgaste le aporte valor. Estética heritage."} },
-  { section:"Ritmo Compositivo", text:"Si tu marca fuera una pieza musical, ¿cómo sonaría su base rítmica?", a:{title:"Un metrónomo constante",desc:"Notas largas, espacios de silencio y una estructura previsible."}, b:{title:"Un solo de jazz o beat electrónico",desc:"Síncopas, cambios de ritmo y energía ascendente."} },
+  { section:"Contraste de Textura", text:"¿Cómo envejece mejor la estética de tu marca?", a:{title:"Impecable siempre",desc:"Se mantiene nueva y reluciente. Estética new-tech."}, b:{title:"Ganando carácter",desc:"La pátina y el uso le aportan valor. Estética heritage."} },
+
+  // ── RITMO COMPOSITIVO (5) ──
+  { section:"Ritmo Compositivo", text:"Si tu marca fuera una pieza musical, ¿cómo sonaría su base rítmica?", a:{title:"Un metrónomo constante",desc:"Notas largas, espacios de silencio y una estructura previsible."}, b:{title:"Un solo de jazz o beat electrónico",desc:"Cambios de ritmo, sorpresa y energía ascendente."} },
   { section:"Ritmo Compositivo", text:"Imaginá los elementos de tu marca sobre una mesa. ¿Cómo los organizarías?", a:{title:"Alineados perfectamente",desc:"Respetando márgenes y ejes invisibles. Simetría total."}, b:{title:"Superpuestos y dinámicos",desc:"Rompiendo bordes y creando capas de profundidad. Asimetría."} },
   { section:"Ritmo Compositivo", text:"¿Qué sensación debe quedar en la retina del usuario tras ver una pieza de comunicación?", a:{title:"Estabilidad y aplomo",desc:"Nada se mueve, todo está en su lugar. Equilibrio estático."}, b:{title:"Impulso y tensión",desc:"Parece que algo está a punto de suceder. Equilibrio dinámico."} },
-  { section:"Ritmo Compositivo", text:"¿Cómo preferís que la marca entregue su mensaje visual?", a:{title:"De forma dosificada",desc:"Pocos elementos, mucho aire y un foco único. Minimalismo rítmico."}, b:{title:"De forma envolvente",desc:"Múltiples capas y detalles que invitan a explorar. Maximalismo."} },
   { section:"Ritmo Compositivo", text:"Si trazamos una línea imaginaria que cruza la identidad de tu marca, ¿cómo es esa línea?", a:{title:"Horizontal",desc:"Calma, horizonte, base sólida y descanso."}, b:{title:"Diagonal o vertical",desc:"Ambición, velocidad, ruptura y crecimiento."} },
   { section:"Ritmo Compositivo", text:"¿Cómo querés que el cliente recorra visualmente tus diseños?", a:{title:"De manera lineal",desc:"Primero esto, luego aquello. Claridad jerárquica."}, b:{title:"De manera inmersiva",desc:"Que su ojo salte de un punto de interés a otro. Descubrimiento visual."} },
 
-  // DIMENSIÓN 5: TONO DE VOZ VISUAL
+  // ── TONO DE VOZ VISUAL (5) ──
   { section:"Tono de Voz Visual", text:"Cuando tu marca presenta una novedad, ¿cómo lo anuncia visualmente?", a:{title:"Con contundencia",desc:"Tipografía grande, sin adornos. El mensaje ocupa todo el espacio disponible."}, b:{title:"Con susurro",desc:"El diseño invita a acercarse. La información se revela en capas, no de golpe."} },
   { section:"Tono de Voz Visual", text:"Si tu marca tuviera que convencer a alguien, ¿cómo lo haría visualmente?", a:{title:"Con evidencia directa",desc:"Datos, jerarquía clara, sin rodeos. La composición es el argumento."}, b:{title:"Con atmósfera y evocación",desc:"Crea un estado emocional que lleva a la conclusión sin decirla explícitamente."} },
-  { section:"Tono de Voz Visual", text:"¿Cómo usa el espacio negativo tu marca para comunicar?", a:{title:"Como respiro calculado",desc:"El vacío está donde tiene que estar. Sirve para que el ojo descanse y enfoque."}, b:{title:"Como parte del mensaje",desc:"El espacio vacío dice algo. Su ausencia es tan intencional como su presencia."} },
   { section:"Tono de Voz Visual", text:"Cuando tu marca se dirige a su audiencia, ¿desde qué posición lo hace?", a:{title:"Desde la autoridad",desc:"Sabe lo que hace y lo muestra. No pide permiso para ocupar el espacio."}, b:{title:"Desde la conversación",desc:"Propone, no impone. El diseño abre un diálogo más que cerrar un argumento."} },
-  { section:"Tono de Voz Visual", text:"¿Cómo trata tu marca la información secundaria (fechas, datos, detalles técnicos)?", a:{title:"La jerarquiza con precisión",desc:"Cada dato tiene su lugar y su peso visual. Nada compite con lo principal."}, b:{title:"La integra en la narrativa",desc:"Los detalles se descubren al explorar. Forman parte de la experiencia, no del ruido."} },
+  { section:"Tono de Voz Visual", text:"¿Cómo trata tu marca la información secundaria (fechas, datos, detalles técnicos)?", a:{title:"La jerarquiza con precisión",desc:"Cada dato tiene su lugar y su peso visual. Nada compite con lo principal."}, b:{title:"La integra en la narrativa",desc:"Los detalles se descubren al explorar. Forman parte de la experiencia."} },
   { section:"Tono de Voz Visual", text:"Si una pieza de tu marca pudiera tener un volumen, ¿a qué intensidad sonaría?", a:{title:"Alto y claro",desc:"Sin ambigüedades. Lo que dice lo dice en voz alta y con convicción."}, b:{title:"Moderado y envolvente",desc:"No grita, pero tampoco murmura. Su presencia se siente antes de que te des cuenta."} },
 
-  // DIMENSIÓN 6: ESCALA DE APLICACIÓN
-  { section:"Escala de Aplicación", text:"¿En qué formato nació o vive principalmente tu marca hoy?", a:{title:"En pantalla",desc:"Redes, web, apps, stories. Su hábitat natural es digital y de bolsillo."}, b:{title:"En el espacio físico",desc:"Cartelería, packaging, ambientaciones. Su escala natural es tangible y presencial."} },
-  { section:"Escala de Aplicación", text:"Imaginá tu logo reducido al tamaño de un sello de 1 cm. ¿Qué pasa?", a:{title:"Sigue funcionando perfectamente",desc:"Fue diseñado para escalar. A cualquier tamaño sigue siendo reconocible."}, b:{title:"Pierde matices importantes",desc:"Tiene detalles que en pequeño desaparecen. Su riqueza necesita espacio para respirar."} },
-  { section:"Escala de Aplicación", text:"¿Cómo imaginas la presencia de tu marca en un evento o espacio físico?", a:{title:"Discreta y precisa",desc:"Un elemento bien ubicado, no invasivo. La calidad habla más que la cantidad."}, b:{title:"Envolvente y total",desc:"Que el espacio respire tu marca. La experiencia es inmersiva de punta a punta."} },
-  { section:"Escala de Aplicación", text:"¿Cómo se comporta tu identidad cuando la aplicás en múltiples formatos simultáneos?", a:{title:"Con consistencia exacta",desc:"El mismo logo, la misma paleta, el mismo sistema en todos lados."}, b:{title:"Con adaptación inteligente",desc:"Cada formato tiene su versión. El sistema permite variaciones sin perder identidad."} },
-  { section:"Escala de Aplicación", text:"¿Tu marca fue pensada para crecer como sistema?", a:{title:"Tiene lo esencial resuelto",desc:"Logo, colores y tipografía. Funciona bien para el momento actual."}, b:{title:"Está pensada para escalar",desc:"Tiene versiones, submarcas, aplicaciones previstas. Es un sistema, no solo un logo."} },
-  { section:"Escala de Aplicación", text:"Cuando tu audiencia se aleja de una pieza de tu marca, ¿qué recordará primero?", a:{title:"El símbolo o el nombre",desc:"La forma que la identifica. Simple, directo y de alta recordación."}, b:{title:"La experiencia completa",desc:"El conjunto: cómo se sintió, el tono, la atmósfera. Más que un logo, un mundo."} }
+  // ── MADUREZ DE SISTEMA (4) — ¿tu marca es un logo o un sistema? ──
+  { section:"Madurez de Sistema", text:"Imaginá tu logo reducido al tamaño de un sello de 1 cm. ¿Qué pasa?", a:{title:"Pierde matices",desc:"Tiene detalles que en pequeño desaparecen. Necesita espacio para respirar."}, b:{title:"Sigue funcionando",desc:"Fue pensado para vivir en cualquier tamaño sin perder reconocimiento."} },
+  { section:"Madurez de Sistema", text:"Si mañana otra persona tuviera que diseñar una pieza de tu marca, ¿con qué se guía?", a:{title:"El logo y algunos archivos",desc:"El criterio vive en tu cabeza. Cada pieza depende de quién la haga."}, b:{title:"Reglas documentadas",desc:"Usos, variantes, qué sí y qué no. Cualquiera puede sostener la coherencia."} },
+  { section:"Madurez de Sistema", text:"Cuando aparece un formato nuevo (un reel, un banner, un packaging), ¿qué pasa con tu identidad?", a:{title:"Se resuelve en el momento",desc:"Cada pieza se improvisa con lo que hay a mano."}, b:{title:"El sistema ya lo prevé",desc:"Hay versiones y criterios para adaptarse sin romperse."} },
+  { section:"Madurez de Sistema", text:"Si tu negocio duplicara sus canales el año que viene, ¿tu identidad está lista para acompañarlo?", a:{title:"Habría que crear mucho desde cero",desc:"La marca acompaña hasta donde llega hoy."}, b:{title:"Ya está preparada",desc:"Submarcas, aplicaciones y variantes previstas. Es un sistema, no solo un logo."} }
 ];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// PERFILES
+// ─────────────────────────────────────────────────────────────────────────────
 const perfiles = {
   espectro: {
     "Éter Minimal":    { card:"#F0F1F3", cb:"#2E86AB", cl:"#185FA5", cn:"#0C447C", cd:"#185FA5", sub:"Limpieza · Espacios negativos · Luz blanca", desc:"En la práctica: tus piezas comunican desde la depuración. Cada elemento que agregues compite con el silencio — y el silencio es tu activo más poderoso. Para que funcione, cada decisión tipográfica y espacial necesita ser deliberada." },
-    "Ónix Prestigio":  { card:"#0F0F1A", cb:"#9B59B6", cl:"#C39BD3", cn:"#E8DAEF", cd:"#C39BD3", sub:"Profundidad · Autoridad · Misterio", desc:"En la práctica: tu identidad genera autoridad antes de que el cliente lea una sola palabra. Para sostener esa percepción, cada pieza necesita el mismo nivel de cuidado — un elemento mal ejecutado destruye lo que construyeron diez bien hechos." },
+    "Ónix Prestigio":  { card:"#1a1a2e", cb:"#9B59B6", cl:"#C39BD3", cn:"#E8DAEF", cd:"#C39BD3", sub:"Profundidad · Autoridad · Misterio", desc:"En la práctica: tu identidad genera autoridad antes de que el cliente lea una sola palabra. Para sostener esa percepción, cada pieza necesita el mismo nivel de cuidado — un elemento mal ejecutado destruye lo que construyeron diez bien hechos." },
     "Raíz Orgánica":   { card:"#F5E6D3", cb:"#A0522D", cl:"#6B3A2A", cn:"#3D2B1F", cd:"#6B3A2A", sub:"Pigmentos naturales · Calidez · Origen", desc:"En la práctica: tu identidad conecta desde la autenticidad. Lo que diferencia una identidad orgánica poderosa de una genérica es el storytelling — sin narrativa de origen, la paleta pierde todo su poder de conexión emocional." },
     "Prisma Vibrante": { card:"#D5F5E3", cb:"#27AE60", cl:"#1E8449", cn:"#145A32", cd:"#1E8449", sub:"Saturación · Energía · Impacto visual", desc:"En la práctica: tu marca captura atención de forma inmediata. El desafío es sistematizar esa energía — sin reglas claras de aplicación, las piezas pueden generar impacto individual pero perder coherencia como sistema." }
   },
@@ -584,7 +647,7 @@ const perfiles = {
   textura: {
     "Cristal Digital":   { card:"#D6EAF8", cb:"#2E86AB", cl:"#185FA5", cn:"#0C447C", cd:"#185FA5", sub:"Glossy · Nitidez vectorial · Tecnología", desc:"En la práctica: tu identidad comunica modernidad y precisión técnica desde el primer contacto. Para sostener esa percepción, los archivos, la calidad de impresión y los formatos digitales necesitan el mismo nivel de cuidado que el diseño en sí." },
     "Fibra Humana":      { card:"#D5E8D4", cb:"#3B6D11", cl:"#3B6D11", cn:"#27500A", cd:"#3B6D11", sub:"Orgánico · Grano · Calidez material", desc:"En la práctica: tu identidad se vuelve más valiosa con el tiempo y el uso. La textura orgánica crea memorabilidad táctil — pero para que eso funcione en digital, necesitás traducir esa sensación en decisiones fotográficas y tipográficas muy concretas." },
-    "Híbrido Téctonico": { card:"#FFF2CC", cb:"#BA7517", cl:"#854F0B", cn:"#633806", cd:"#854F0B", sub:"Tensión digital-natural · Contraste", desc:"En la práctica: tu identidad vive en la intersección entre lo tecnológico y lo humano — un territorio de alto valor si está bien ejecutado. El riesgo es que sin un sistema claro, esa dualidad se lea como inconsistencia en lugar de como carácter." }
+    "Híbrido Tectónico": { card:"#FFF2CC", cb:"#BA7517", cl:"#854F0B", cn:"#633806", cd:"#854F0B", sub:"Tensión digital-natural · Contraste", desc:"En la práctica: tu identidad vive en la intersección entre lo tecnológico y lo humano — un territorio de alto valor si está bien ejecutado. El riesgo es que sin un sistema claro, esa dualidad se lea como inconsistencia en lugar de como carácter." }
   },
   ritmo: {
     "Pulso Cadencioso":    { card:"#D6EAF8", cb:"#2E86AB", cl:"#185FA5", cn:"#0C447C", cd:"#185FA5", sub:"Orden · Simetría · Claridad jerárquica", desc:"En la práctica: tus piezas guían al lector sin que lo note. Esa claridad genera confianza — el cliente siente que sabés comunicar. Para sostenerlo, cada nueva pieza necesita respetar la misma lógica compositiva." },
@@ -592,26 +655,35 @@ const perfiles = {
     "Síncopa Estructural": { card:"#FFF2CC", cb:"#BA7517", cl:"#854F0B", cn:"#633806", cd:"#854F0B", sub:"Balance · Tensión contenida · Movimiento", desc:"En la práctica: tus piezas tienen vida sin perder legibilidad. Esa tensión entre estructura y movimiento es difícil de sistematizar — pero cuando está bien documentada, es uno de los estilos compositivos más reconocibles." }
   },
   tono: {
-    "Voz Directa":   { card:"#2C2C4A", cb:"#4B0082", cl:"#C39BD3", cn:"#E8DAEF", cd:"#C39BD3", sub:"Contundencia · Autoridad · Claridad", desc:"En la práctica: tu marca comunica sin rodeos y eso genera confianza rápida. Para que la contundencia se lea como autoridad y no como agresividad, el tono visual necesita calibrarse según el contexto — no todas las piezas deben hablar al mismo volumen." },
+    "Voz Directa":   { card:"#2C2C4A", cb:"#8b5cf6", cl:"#C8B3FF", cn:"#EDE7FF", cd:"#C8B3FF", sub:"Contundencia · Autoridad · Claridad", desc:"En la práctica: tu marca comunica sin rodeos y eso genera confianza rápida. Para que la contundencia se lea como autoridad y no como agresividad, el tono visual necesita calibrarse según el contexto — no todas las piezas deben hablar al mismo volumen." },
     "Voz Evocadora": { card:"#F5E6D3", cb:"#A0522D", cl:"#6B3A2A", cn:"#3D2B1F", cd:"#6B3A2A", sub:"Sutileza · Atmósfera · Capas narrativas", desc:"En la práctica: tu marca construye relaciones de largo plazo porque genera curiosidad. El desafío es el canal: en entornos de alto tráfico y poco tiempo de atención, este tono necesita un elemento de entrada más directo para invitar a quedarse." },
-    "Voz Matizada":  { card:"#EDE0F5", cb:"#4B0082", cl:"#4B0082", cn:"#2D004F", cd:"#4B0082", sub:"Claridad con profundidad · Equilibrio expresivo", desc:"En la práctica: tu marca puede adaptarse a distintos momentos del vínculo con el cliente sin perder identidad. Para que esa versatilidad sea un activo y no una fuente de inconsistencia, necesitás definir cuándo y cómo aplicar cada registro." }
+    "Voz Matizada":  { card:"#EDE0F5", cb:"#8b5cf6", cl:"#5B21B6", cn:"#3B0764", cd:"#5B21B6", sub:"Claridad con profundidad · Equilibrio expresivo", desc:"En la práctica: tu marca puede adaptarse a distintos momentos del vínculo con el cliente sin perder identidad. Para que esa versatilidad sea un activo y no una fuente de inconsistencia, necesitás definir cuándo y cómo aplicar cada registro." }
   },
   escala: {
-    "Marca Íntima":    { card:"#D6EAF8", cb:"#2E86AB", cl:"#185FA5", cn:"#0C447C", cd:"#185FA5", sub:"Digital · Pantalla · Alta recordación", desc:"En la práctica: tu identidad funciona muy bien en el entorno donde más tiempo pasa tu audiencia hoy. Para que eso no se convierta en una limitación, vale la pena revisar cómo se comporta en formatos físicos antes de que el negocio los requiera." },
-    "Marca Sistémica": { card:"#D5E8D4", cb:"#3B6D11", cl:"#3B6D11", cn:"#27500A", cd:"#3B6D11", sub:"Física · Espacial · Sistema completo", desc:"En la práctica: tu identidad está pensada para crecer y no romperse en el camino. Para que eso funcione, necesitás un manual de marca que documente el sistema — sin él, la coherencia depende de quién esté ejecutando en cada momento." },
-    "Marca Adaptable": { card:"#FFF2CC", cb:"#BA7517", cl:"#854F0B", cn:"#633806", cd:"#854F0B", sub:"Flexible · Multiplataforma · En evolución", desc:"En la práctica: tu identidad puede acompañar el crecimiento del negocio sin romperse. El trabajo es documentar las reglas de adaptación — porque sin ellas, la flexibilidad se convierte en el motivo por el cual cada pieza se ve diferente." }
+    "Marca Esencial":     { card:"#D6EAF8", cb:"#2E86AB", cl:"#185FA5", cn:"#0C447C", cd:"#185FA5", sub:"Logo + básicos · Punto de partida", desc:"En la práctica: tenés lo esencial resuelto y funciona para el momento actual del negocio. Es el punto de partida más común — y también el momento ideal para construir el sistema con criterio, antes de que el crecimiento te obligue a improvisar. En términos de negocio: cada pieza improvisada es tiempo y dinero que se pierde en re-decidir lo mismo." },
+    "Marca en Expansión": { card:"#FFF2CC", cb:"#BA7517", cl:"#854F0B", cn:"#633806", cd:"#854F0B", sub:"Sistema parcial · En transición", desc:"En la práctica: tu identidad ya empezó a comportarse como sistema en algunos frentes, pero todavía hay zonas donde cada pieza se resuelve sobre la marcha. En términos de negocio: la coherencia a medias diluye el reconocimiento — el trabajo es cerrar esas brechas antes de escalar canales." },
+    "Marca Sistema":      { card:"#D5E8D4", cb:"#3B6D11", cl:"#3B6D11", cn:"#27500A", cd:"#3B6D11", sub:"Documentada · Escalable · Consistente", desc:"En la práctica: tu identidad está pensada para crecer sin romperse. En términos de negocio: eso significa que podés delegar la ejecución sin perder consistencia. El desafío ahora es mantener el sistema vivo — un manual que no se actualiza envejece más rápido que un logo." }
   }
 };
 
-const cats = ["Espectro Cromático","Morfología de Marca","Contraste de Textura","Ritmo Compositivo","Tono de Voz Visual","Escala de Aplicación"];
+const cats = ["Espectro Cromático","Morfología de Marca","Contraste de Textura","Ritmo Compositivo","Tono de Voz Visual","Madurez de Sistema"];
+const catRanges = [ [0,5],[6,10],[11,15],[16,20],[21,25],[26,29] ];
+const TOTAL = 30;
 let current = 0;
-const answers = new Array(36).fill(null);
+const answers = new Array(TOTAL).fill(null);
 
+function catIndexOf(qIdx){
+  for(let i=0;i<catRanges.length;i++){ if(qIdx>=catRanges[i][0] && qIdx<=catRanges[i][1]) return i; }
+  return 0;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SCORING
+// ─────────────────────────────────────────────────────────────────────────────
 function calcEspectroRaw(a) {
-  // P1=A→Éter, P1=B→Raíz | P2=A→Éter, P2=B→Ónix
-  // P3=A→Prisma, P3=B→Raíz | P4=A→Éter, P4=B→Prisma
-  // P5=A→Ónix, P5=B→Raíz | P6=A→Prisma, P6=B→Ónix
-  // Max per profile = 3 → fully balanced
+  // Round-robin: cada perfil aparece 3 veces en 6 enfrentamientos
+  // P1: Éter vs Raíz | P2: Éter vs Ónix | P3: Prisma vs Raíz
+  // P4: Éter vs Prisma | P5: Ónix vs Raíz | P6: Prisma vs Ónix
   let se=0,so=0,sr=0,sp=0;
   if(a[0]==='A') se++; else sr++;
   if(a[1]==='A') se++; else so++;
@@ -620,6 +692,12 @@ function calcEspectroRaw(a) {
   if(a[4]==='A') so++; else sr++;
   if(a[5]==='A') sp++; else so++;
   return {se,so,sr,sp};
+}
+
+function countAB(a, from, to){
+  let na=0, nb=0;
+  for(let i=from;i<=to;i++){ if(a[i]==='A')na++; else if(a[i]==='B')nb++; }
+  return {na, nb};
 }
 
 function calcPerfiles() {
@@ -632,22 +710,32 @@ function calcPerfiles() {
   else if(sr===mx) espectro = "Raíz Orgánica";
   else             espectro = "Prisma Vibrante";
 
-  let ma=0,mb=0; for(let i=6;i<12;i++){if(a[i]==='A')ma++;else if(a[i]==='B')mb++;}
-  const morfo = ma>mb?"ADN Estructural":mb>ma?"ADN Orgánico":"ADN Híbrido";
-  let ta=0,tb=0; for(let i=12;i<18;i++){if(a[i]==='A')ta++;else if(a[i]==='B')tb++;}
-  const textura = ta>=4?"Cristal Digital":tb>=4?"Fibra Humana":"Híbrido Téctonico";
-  let ra=0,rb=0; for(let i=18;i<24;i++){if(a[i]==='A')ra++;else if(a[i]==='B')rb++;}
-  const ritmo = ra>=4?"Pulso Cadencioso":rb>=4?"Vibración Cinética":"Síncopa Estructural";
-  let tna=0,tnb=0; for(let i=24;i<30;i++){if(a[i]==='A')tna++;else if(a[i]==='B')tnb++;}
-  const tono = tna>=4?"Voz Directa":tnb>=4?"Voz Evocadora":"Voz Matizada";
-  let ea=0,eb=0; for(let i=30;i<36;i++){if(a[i]==='A')ea++;else if(a[i]==='B')eb++;}
-  const escala = ea>=4?"Marca Íntima":eb>=4?"Marca Sistémica":"Marca Adaptable";
-  return {espectro, morfo, textura, ritmo, tono, escala, se, so, sr, sp, ma, mb, ta, tb, ra, rb, tna, tnb, ea, eb};
+  // Dimensiones binarias de 5 preguntas: >=4 define polo, 3-2 = híbrido
+  const m = countAB(a, 6, 10);
+  const morfo = m.na>=4 ? "ADN Estructural" : m.nb>=4 ? "ADN Orgánico" : "ADN Híbrido";
+
+  const t = countAB(a, 11, 15);
+  const textura = t.na>=4 ? "Cristal Digital" : t.nb>=4 ? "Fibra Humana" : "Híbrido Tectónico";
+
+  const r = countAB(a, 16, 20);
+  const ritmo = r.na>=4 ? "Pulso Cadencioso" : r.nb>=4 ? "Vibración Cinética" : "Síncopa Estructural";
+
+  const tn = countAB(a, 21, 25);
+  const tono = tn.na>=4 ? "Voz Directa" : tn.nb>=4 ? "Voz Evocadora" : "Voz Matizada";
+
+  // Madurez de sistema: 4 preguntas, cuenta de respuestas B (sistema)
+  const e = countAB(a, 26, 29);
+  const escala = e.nb<=1 ? "Marca Esencial" : e.nb===2 ? "Marca en Expansión" : "Marca Sistema";
+
+  return {
+    espectro, morfo, textura, ritmo, tono, escala,
+    se, so, sr, sp,
+    ma:m.na, mb:m.nb, ta:t.na, tb:t.nb, ra:r.na, rb:r.nb,
+    tna:tn.na, tnb:tn.nb, ea:e.na, eb:e.nb
+  };
 }
 
-
-
-// ── Personalized opening phrase ──
+// ── Frase de apertura personalizada ──
 function calcApertura(p) {
   const map = {
     "Éter Minimal+ADN Estructural":    "Tu marca opera con precisión quirúrgica: cada elemento cumple una función y nada sobra. Esa depuración es tu fortaleza — y también lo que hay que sostener con sistema.",
@@ -666,25 +754,29 @@ function calcApertura(p) {
   return map[p.espectro+"+"+p.morfo] || "Tu marca tiene una identidad con características únicas que este diagnóstico empieza a revelar.";
 }
 
-// ── Maturity: coherence between espectro and secondary profiles ──
+// ── Madurez: coherencia entre dimensiones + score real de sistema ──
 function calcMadurez(p) {
   const coherence = {
     "Éter Minimal":    { morfo:["ADN Estructural"], textura:["Cristal Digital"], ritmo:["Pulso Cadencioso","Síncopa Estructural"] },
-    "Ónix Prestigio":  { morfo:["ADN Estructural","ADN Híbrido"], textura:["Cristal Digital","Híbrido Téctonico"], ritmo:["Pulso Cadencioso","Síncopa Estructural"] },
-    "Raíz Orgánica":   { morfo:["ADN Orgánico","ADN Híbrido"], textura:["Fibra Humana","Híbrido Téctonico"], ritmo:["Vibración Cinética","Síncopa Estructural"] },
-    "Prisma Vibrante": { morfo:["ADN Orgánico","ADN Híbrido"], textura:["Cristal Digital","Híbrido Téctonico"], ritmo:["Vibración Cinética"] },
+    "Ónix Prestigio":  { morfo:["ADN Estructural","ADN Híbrido"], textura:["Cristal Digital","Híbrido Tectónico"], ritmo:["Pulso Cadencioso","Síncopa Estructural"] },
+    "Raíz Orgánica":   { morfo:["ADN Orgánico","ADN Híbrido"], textura:["Fibra Humana","Híbrido Tectónico"], ritmo:["Vibración Cinética","Síncopa Estructural"] },
+    "Prisma Vibrante": { morfo:["ADN Orgánico","ADN Híbrido"], textura:["Cristal Digital","Híbrido Tectónico"], ritmo:["Vibración Cinética"] },
   };
   const c = coherence[p.espectro] || {};
   let score = 0;
-  if((c.morfo||[]).includes(p.morfo))   score++;
+  if((c.morfo||[]).includes(p.morfo))     score++;
   if((c.textura||[]).includes(p.textura)) score++;
-  if((c.ritmo||[]).includes(p.ritmo))   score++;
-  if(score===3) return { nivel:"Consolidada", pct:90, desc:"Tu identidad proyecta un sistema visual coherente en sus dimensiones — estás en el tercio superior de madurez. Hay una base sólida para escalar sin perder consistencia.", color:"#27AE60" };
-  if(score===2) return { nivel:"En desarrollo", pct:58, desc:"Varias dimensiones están alineadas pero hay tensiones sin resolver. La mayoría de las marcas sin sistema definido se ubica en este rango — con ajustes puntuales podés consolidar el sistema.", color:"#E67E22" };
-  return { nivel:"Emergente", pct:25, desc:"Tu identidad aún no opera como sistema unificado — es el punto de partida más común para marcas en crecimiento. Es el momento ideal para construirla con criterio antes de que escale.", color:"#E74C3C" };
+  if((c.ritmo||[]).includes(p.ritmo))     score++;
+
+  // Porcentaje real: 60% coherencia estética + 40% madurez de sistema (respuestas B en 26-29)
+  const pct = Math.round( (score/3)*60 + (p.eb/4)*40 );
+
+  if(pct >= 75) return { nivel:"Consolidada", pct, desc:"Tu identidad proyecta un sistema visual coherente y con base operativa — estás en el tercio superior de madurez. Hay fundamentos sólidos para escalar sin perder consistencia.", color:"#27AE60" };
+  if(pct >= 45) return { nivel:"En desarrollo", pct, desc:"Varias dimensiones están alineadas pero hay tensiones sin resolver o zonas sin sistematizar. La mayoría de las marcas sin sistema definido se ubica en este rango — con ajustes puntuales podés consolidar el sistema.", color:"#E67E22" };
+  return { nivel:"Emergente", pct, desc:"Tu identidad aún no opera como sistema unificado — es el punto de partida más común para marcas en crecimiento. Es el momento ideal para construirla con criterio antes de que escale.", color:"#E74C3C" };
 }
 
-// ── Tension diagnosis based on espectro + morfo ──
+// ── Diagnóstico de tensión (espectro + morfo) ──
 function calcTension(p) {
   const map = {
     "Éter Minimal+ADN Estructural":    "Tu marca tiene una base sólida y coherente. El riesgo latente es la rigidez: sin intervención estratégica puede percibirse como fría o inaccesible para tu audiencia.",
@@ -694,7 +786,7 @@ function calcTension(p) {
     "Ónix Prestigio+ADN Orgánico":     "Tu marca irradia autoridad pero su morfología comunica cercanía. Hay una tensión entre lo que querés proyectar y lo que estás mostrando en cada pieza.",
     "Ónix Prestigio+ADN Híbrido":      "Combinás profundidad con adaptabilidad. Sin una guía visual clara, esta versatilidad puede leerse como inconsistencia de marca.",
     "Raíz Orgánica+ADN Estructural":   "Tu esencia es orgánica pero tu forma es arquitectónica. Una combinación que puede resultar interesante o forzada según cómo se ejecute cada pieza.",
-    "Raíz Orgánica+ADN Orgánico":      "Tu identidad es completamente coherente en su registro natural. El desafío es diferenciarte en un mercado que romanticiza lo artesanal.",
+    "Raíz Orgánica+ADN Orgánico":      "Tu identidad es completamente coherente en su registro natural. El desafío es diferenciarte en un mercado que romantiza lo artesanal.",
     "Raíz Orgánica+ADN Híbrido":       "Tenés una base auténtica con capacidad de adaptación. El riesgo es perder el hilo conductor si cada pieza visual evoluciona por su cuenta.",
     "Prisma Vibrante+ADN Estructural": "La energía de tu paleta choca con la estructura de tu forma. Puede ser tu diferencial más potente o tu mayor inconsistencia — todo depende del sistema.",
     "Prisma Vibrante+ADN Orgánico":    "Combinás vitalidad visual con fluidez formal. El riesgo es la saturación: demasiada energía sin contención puede agotar a tu audiencia.",
@@ -703,7 +795,7 @@ function calcTension(p) {
   return map[p.espectro+"+"+p.morfo] || "Tu identidad tiene características únicas que requieren un análisis personalizado para identificar sus tensiones.";
 }
 
-// ── 3 warning signals based on espectro + textura + ritmo ──
+// ── 3 señales de alerta (espectro + textura + ritmo) ──
 function calcAlertas(p) {
   const alertas = {
     "Éter Minimal": [
@@ -729,11 +821,10 @@ function calcAlertas(p) {
   };
   const base = alertas[p.espectro] || [];
 
-  // Enrich with texture/rhythm insights
   const extras = {
     "Fibra Humana+Vibración Cinética": "La combinación de textura orgánica y ritmo dinámico es poderosa pero difícil de sistematizar — sin guía, cada pieza se verá diferente.",
     "Cristal Digital+Pulso Cadencioso": "Tu identidad proyecta control y precisión. El riesgo es parecer corporativa en exceso y perder la conexión emocional.",
-    "Híbrido Téctonico+Síncopa Estructural": "Estás en un territorio de tensión productiva. Sin definición clara, esta ambigüedad puede leerse como indefinición de marca.",
+    "Híbrido Tectónico+Síncopa Estructural": "Estás en un territorio de tensión productiva. Sin definición clara, esta ambigüedad puede leerse como indefinición de marca.",
   };
   const extraKey = p.textura+"+"+p.ritmo;
   const result = [...base];
@@ -741,49 +832,35 @@ function calcAlertas(p) {
   return result.slice(0,3);
 }
 
-// ── Specific WhatsApp message based on maturity ──
+// ── Mensaje de WhatsApp según madurez ──
 function buildWAMessage(p, madurez) {
+  const perfilStr = `${p.espectro} · ${p.morfo} · ${p.textura} · ${p.ritmo} · ${p.tono} · ${p.escala}`;
   const mensajes = {
-    "Consolidada": `Hola! Completé el Test de ADN Visual de Chromalab. Mi marca tiene un sistema coherente pero quiero llevarlo al siguiente nivel.\n\nMis perfiles: ${p.espectro} · ${p.morfo} · ${p.textura} · ${p.ritmo}\n\nMadurez de marca: ${madurez.nivel}\n\n¿Podemos agendar una sesión para trabajar en eso?`,
-    "En desarrollo": `Hola! Completé el Test de ADN Visual de Chromalab y hay tensiones sin resolver en mi identidad visual.\n\nMis perfiles: ${p.espectro} · ${p.morfo} · ${p.textura} · ${p.ritmo}\n\nMadurez de marca: ${madurez.nivel}\n\nMe gustaría agendar una sesión para resolver esas inconsistencias.`,
-    "Emergente": `Hola! Completé el Test de ADN Visual de Chromalab. Mi identidad visual está en etapa inicial y quiero definirla con criterio.\n\nMis perfiles: ${p.espectro} · ${p.morfo} · ${p.textura} · ${p.ritmo}\n\nMadurez de marca: ${madurez.nivel}\n\n¿Cuándo podemos hablar para arrancar?`,
+    "Consolidada": `Hola! Completé el Test de ADN Visual de Chromalab. Mi marca tiene un sistema coherente pero quiero llevarlo al siguiente nivel.\n\nMis perfiles: ${perfilStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)\n\n¿Podemos agendar una sesión para trabajar en eso?`,
+    "En desarrollo": `Hola! Completé el Test de ADN Visual de Chromalab y hay tensiones sin resolver en mi identidad visual.\n\nMis perfiles: ${perfilStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)\n\nMe gustaría agendar una sesión para resolver esas inconsistencias.`,
+    "Emergente": `Hola! Completé el Test de ADN Visual de Chromalab. Mi identidad visual está en etapa inicial y quiero definirla con criterio.\n\nMis perfiles: ${perfilStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)\n\n¿Cuándo podemos hablar para arrancar?`,
   };
   return encodeURIComponent(mensajes[madurez.nivel] || mensajes["Emergente"]);
 }
 
-function calcRadarScores(a) {
-  const {se,so,sr,sp} = calcEspectroRaw(a);
-  const espectroScores = [se,so,sr,sp].map(v=>Math.round((v/3)*6));
-
-  let ma=0,mb=0;
-  for(let i=6;i<12;i++){if(a[i]==='A')ma++;else if(a[i]==='B')mb++;}
-  const morfoScores = [ma, mb, Math.max(0, 6-Math.abs(ma-mb))];
-
-  let ta=0,tb=0;
-  for(let i=12;i<18;i++){if(a[i]==='A')ta++;else if(a[i]==='B')tb++;}
-  const texturaScores = [ta, tb, Math.max(0, 6-Math.abs(ta-tb))];
-
-  let ra=0,rb=0;
-  for(let i=18;i<24;i++){if(a[i]==='A')ra++;else if(a[i]==='B')rb++;}
-  const ritmoScores = [ra, rb, Math.max(0, 6-Math.abs(ra-rb))];
-
-  let tna=0,tnb=0;
-  for(let i=24;i<30;i++){if(a[i]==='A')tna++;else if(a[i]==='B')tnb++;}
-  const tonoScores = [tna, tnb, Math.max(0, 6-Math.abs(tna-tnb))];
-
-  let ea=0,eb=0;
-  for(let i=30;i<36;i++){if(a[i]==='A')ea++;else if(a[i]==='B')eb++;}
-  const escalaScores = [ea, eb, Math.max(0, 6-Math.abs(ea-eb))];
-
-  return { espectroScores, morfoScores, texturaScores, ritmoScores, tonoScores, escalaScores };
+// ─────────────────────────────────────────────────────────────────────────────
+// RADAR
+// ─────────────────────────────────────────────────────────────────────────────
+function calcRadarScores(p) {
+  return {
+    espectroScores: { labels:["Éter","Ónix","Raíz","Prisma"], values:[p.se,p.so,p.sr,p.sp], max:3 },
+    morfoScores:    { labels:["Estructural","Orgánico","Híbrido"], values:[p.ma, p.mb, Math.max(0, 5-Math.abs(p.ma-p.mb))], max:5 },
+    texturaScores:  { labels:["Cristal","Fibra","Tectónico"],      values:[p.ta, p.tb, Math.max(0, 5-Math.abs(p.ta-p.tb))], max:5 },
+    ritmoScores:    { labels:["Cadencioso","Cinético","Síncopa"],  values:[p.ra, p.rb, Math.max(0, 5-Math.abs(p.ra-p.rb))], max:5 },
+    tonoScores:     { labels:["Directa","Evocadora","Matizada"],   values:[p.tna, p.tnb, Math.max(0, 5-Math.abs(p.tna-p.tnb))], max:5 },
+    escalaScores:   { labels:["Logo","Sistema","Equilibrio"],      values:[p.ea, p.eb, Math.max(0, 4-Math.abs(p.ea-p.eb))], max:4 },
+  };
 }
 
-function drawRadar(canvas, labels, values, winnerIdx) {
-  const W = canvas.width, H = canvas.height;
-  const cx = W/2, cy = H/2;
+function drawRadar(canvas, labels, values, winnerIdx, maxVal) {
+  const W = 160, H = 160;
   const R = Math.min(W,H)*0.36;
   const n = labels.length;
-  const maxVal = 6;
   const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
   canvas.width  = W * dpr;
@@ -795,7 +872,7 @@ function drawRadar(canvas, labels, values, winnerIdx) {
   const cxS = W/2, cyS = H/2;
   const angles = labels.map((_,i) => (Math.PI*2*i/n) - Math.PI/2);
 
-  // Grid rings
+  // Anillos de grilla
   for(let ring=1; ring<=3; ring++) {
     const r = R*(ring/3);
     ctx.beginPath();
@@ -805,22 +882,22 @@ function drawRadar(canvas, labels, values, winnerIdx) {
       i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
     });
     ctx.closePath();
-    ctx.strokeStyle = 'rgba(75,0,130,0.12)';
-    ctx.lineWidth = 0.8;
+    ctx.strokeStyle = 'rgba(139,92,246,0.18)';
+    ctx.lineWidth = 1;
     ctx.stroke();
   }
 
-  // Spokes
+  // Ejes
   angles.forEach(a => {
     ctx.beginPath();
     ctx.moveTo(cxS, cyS);
     ctx.lineTo(cxS + R*Math.cos(a), cyS + R*Math.sin(a));
-    ctx.strokeStyle = 'rgba(75,0,130,0.15)';
-    ctx.lineWidth = 0.8;
+    ctx.strokeStyle = 'rgba(139,92,246,0.14)';
+    ctx.lineWidth = 1;
     ctx.stroke();
   });
 
-  // Data polygon
+  // Polígono de datos
   ctx.beginPath();
   angles.forEach((a,i) => {
     const r = R*(values[i]/maxVal);
@@ -829,52 +906,52 @@ function drawRadar(canvas, labels, values, winnerIdx) {
     i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
   });
   ctx.closePath();
-  ctx.fillStyle = 'rgba(75,0,130,0.18)';
+  ctx.fillStyle = 'rgba(139,92,246,0.22)';
   ctx.fill();
-  ctx.strokeStyle = '#4B0082';
+  ctx.strokeStyle = '#8b5cf6';
   ctx.lineWidth = 1.5;
   ctx.stroke();
 
-  // Dots on vertices
+  // Puntos en vértices
   angles.forEach((a,i) => {
     const r = R*(values[i]/maxVal);
     const x = cxS + r*Math.cos(a);
     const y = cyS + r*Math.sin(a);
     ctx.beginPath();
     ctx.arc(x,y,3,0,Math.PI*2);
-    ctx.fillStyle = i===winnerIdx ? '#4B0082' : 'rgba(75,0,130,0.5)';
+    ctx.fillStyle = i===winnerIdx ? '#d946ef' : 'rgba(139,92,246,0.6)';
     ctx.fill();
   });
 
-  // Labels
+  // Etiquetas
   const labelR = R + 22;
-  ctx.font = '700 9px Arial';
+  ctx.font = '700 9px "DM Sans", Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   angles.forEach((a,i) => {
     const x = cxS + labelR*Math.cos(a);
     const y = cyS + labelR*Math.sin(a);
-    ctx.fillStyle = i===winnerIdx ? '#4B0082' : '#888';
+    ctx.fillStyle = i===winnerIdx ? '#d946ef' : '#8a86a0';
     ctx.fillText(labels[i].toUpperCase(), x, y);
   });
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// RESULTADO
+// ─────────────────────────────────────────────────────────────────────────────
 function showResult() {
-  // Encode answers in URL so the result has a shareable link
+  // Codificar respuestas en la URL para link compartible
   const answerStr = answers.map(a => a || 'A').join('');
   try {
     const url = new URL(window.location.href);
     url.searchParams.set('r', answerStr);
     window.history.replaceState({}, '', url.toString());
-  } catch(e) {
-    // Silently ignore in preview/srcdoc environments
-  }
+  } catch(e) { /* preview/srcdoc */ }
 
   document.getElementById('question-view').style.display='none';
   document.getElementById('progress-wrap').style.display='none';
-  const p = calcPerfiles();
-  const rs = calcRadarScores(answers);
-  const pKeys6 = ['espectro','morfo','textura','ritmo','tono','escala'];
+  const p  = calcPerfiles();
+  const rs = calcRadarScores(p);
 
   const now = new Date();
   const dateStr = now.toLocaleDateString('es-AR', {day:'numeric', month:'long', year:'numeric'});
@@ -902,17 +979,17 @@ function showResult() {
   }).join('');
 
   const radarDefs = [
-    { title:"Espectro Cromático",  labels:["Éter","Ónix","Raíz","Prisma"],        scores:rs.espectroScores, winner:["Éter Minimal","Ónix Prestigio","Raíz Orgánica","Prisma Vibrante"].indexOf(p.espectro) },
-    { title:"Morfología",          labels:["Estructural","Orgánico","Híbrido"],    scores:rs.morfoScores,    winner:["ADN Estructural","ADN Orgánico","ADN Híbrido"].indexOf(p.morfo) },
-    { title:"Contraste de Textura",labels:["Cristal","Fibra","Tectónico"],         scores:rs.texturaScores,  winner:["Cristal Digital","Fibra Humana","Híbrido Téctonico"].indexOf(p.textura) },
-    { title:"Ritmo Compositivo",   labels:["Cadencioso","Cinético","Síncopa"],     scores:rs.ritmoScores,    winner:["Pulso Cadencioso","Vibración Cinética","Síncopa Estructural"].indexOf(p.ritmo) },
-    { title:"Tono de Voz Visual",  labels:["Directa","Evocadora","Matizada"],      scores:rs.tonoScores,     winner:["Voz Directa","Voz Evocadora","Voz Matizada"].indexOf(p.tono) },
-    { title:"Escala de Aplicación",labels:["Íntima","Sistémica","Adaptable"],      scores:rs.escalaScores,   winner:["Marca Íntima","Marca Sistémica","Marca Adaptable"].indexOf(p.escala) },
+    { title:"Espectro Cromático",  rd:rs.espectroScores, winner:["Éter Minimal","Ónix Prestigio","Raíz Orgánica","Prisma Vibrante"].indexOf(p.espectro) },
+    { title:"Morfología",          rd:rs.morfoScores,    winner:["ADN Estructural","ADN Orgánico","ADN Híbrido"].indexOf(p.morfo) },
+    { title:"Contraste de Textura",rd:rs.texturaScores,  winner:["Cristal Digital","Fibra Humana","Híbrido Tectónico"].indexOf(p.textura) },
+    { title:"Ritmo Compositivo",   rd:rs.ritmoScores,    winner:["Pulso Cadencioso","Vibración Cinética","Síncopa Estructural"].indexOf(p.ritmo) },
+    { title:"Tono de Voz Visual",  rd:rs.tonoScores,     winner:["Voz Directa","Voz Evocadora","Voz Matizada"].indexOf(p.tono) },
+    { title:"Madurez de Sistema",  rd:rs.escalaScores,   winner:["Marca Esencial","Marca Sistema","Marca en Expansión"].indexOf(p.escala)===-1 ? 1 : ( p.escala==="Marca Esencial" ? 0 : p.escala==="Marca Sistema" ? 1 : 2 ) },
   ];
 
-  const radarCardsHTML = radarDefs.map((rd,i) =>
+  const radarCardsHTML = radarDefs.map((d,i) =>
     `<div class="radar-card">
-      <div class="radar-title">${rd.title}</div>
+      <div class="radar-title">${d.title}</div>
       <canvas id="rc${i}" width="160" height="160"></canvas>
       <div class="radar-winner">${pNames[i]}</div>
     </div>`
@@ -931,16 +1008,16 @@ function showResult() {
   document.getElementById('result-view').style.display='block';
   document.getElementById('result-view').innerHTML = `
     <div class="pdf-result" id="pdf-result-content">
-      <div class="pdf-result-header" style="background:#0F0F0F;color:#F2F0E9">
+      <div class="pdf-result-header">
         <div class="eyebrow">Test de ADN Visual · Chromalab</div>
         <h2>${apertura}</h2>
         <div class="sub">Diagnóstico obtenido el ${dateStr}</div>
       </div>
-      <div class="pdf-accent" style="background:#4B0082"></div>
+      <div class="pdf-accent"></div>
       <div class="pdf-result-body">
 
         <div class="pdf-sec">Tu ADN Visual — las 6 dimensiones</div>
-        <div style="font-size:11px;color:#888;margin-bottom:14px;line-height:1.6">El Test de ADN Visual analiza tu identidad en 6 ejes independientes. Juntos forman un sistema: cuando están alineados, tu marca comunica con coherencia. Cuando hay tensión entre ellos, hay una oportunidad de trabajo.</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px;line-height:1.7">El Test de ADN Visual analiza tu identidad en 6 ejes independientes. Juntos forman un sistema: cuando están alineados, tu marca comunica con coherencia — y eso se traduce en reconocimiento y confianza. Cuando hay tensión entre ellos, hay una oportunidad de trabajo.</div>
         <div class="pdf-grid">${cardsHTML}</div>
 
         <div class="pdf-divider"></div>
@@ -948,7 +1025,7 @@ function showResult() {
         <div class="madurez-wrap">
           <div class="madurez-header">
             <span class="madurez-nivel" style="color:${madurez.color}">${madurez.nivel}</span>
-            <span style="font-size:11px;color:var(--text-muted)">${madurez.pct}% de coherencia entre dimensiones</span>
+            <span style="font-size:11px;color:var(--text-muted)">${madurez.pct}% de madurez de sistema</span>
           </div>
           <div class="madurez-bar-bg">
             <div class="madurez-bar-fill" id="madurez-fill" style="width:0%;background:${madurez.color}"></div>
@@ -969,34 +1046,35 @@ function showResult() {
 
         <div class="pdf-divider"></div>
         <div class="pdf-sec">Análisis radar por dimensión</div>
-        <div style="font-size:10px;color:var(--text-muted);margin-bottom:12px;font-style:italic">Cuanto mayor es el área sombreada en cada eje, más fuerte es ese perfil en tu marca.</div>
+        <div style="font-size:10px;color:var(--text-dim);margin-bottom:12px;font-style:italic">Cuanto mayor es el área sombreada en cada eje, más fuerte es ese perfil en tu marca.</div>
         <div class="radar-grid">${radarCardsHTML}</div>
 
         <div class="pdf-divider"></div>
         <div class="pdf-sec">Qué significa cada dimensión</div>
         ${detailsHTML}
         <div class="pdf-divider"></div>
-        <div style="background:#0F0F0F;border-radius:10px;padding:22px 24px;margin-bottom:4px">
-          <div style="font-size:9px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#9B59B6;margin-bottom:10px">Tu próximo paso</div>
-          <div style="font-size:15px;font-weight:700;color:#F2F0E9;margin-bottom:10px;line-height:1.4">Sesión estratégica gratuita · 30 minutos</div>
-          <div style="font-size:12px;color:#CAC7BC;line-height:1.7">Con este diagnóstico como base, en 30 minutos identificamos exactamente qué está funcionando en tu identidad, qué tensiones está generando y cuál es el primer paso concreto para resolverlas — ya sea construyendo desde cero o potenciando lo que ya tenés.</div>
+        <div style="background:var(--bg);border:1px solid var(--card-border);border-radius:14px;padding:22px 24px;margin-bottom:4px">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;font-family:'DM Sans',sans-serif">Tu próximo paso</div>
+          <div style="font-size:16px;font-weight:700;color:var(--lino);margin-bottom:10px;line-height:1.4;font-family:'Playfair Display',serif;font-style:italic">Sesión estratégica gratuita · 30 minutos</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.75">Con este diagnóstico como base, en 30 minutos identificamos exactamente qué está funcionando en tu identidad, qué tensiones está generando y cuál es el primer paso concreto para resolverlas — ya sea construyendo desde cero o potenciando lo que ya tenés.</div>
         </div>
       </div>
-      <div id="download-btn-wrap"  style="padding:0 32px 20px;background:#fff">
-        <button id="dl-btn" onclick="downloadPDF()" style="width:100%;padding:13px;border-radius:8px;border:1.5px solid #4B0082;background:#fff;color:#4B0082;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.3px;transition:background .15s,color .15s" onmouseover="this.style.background='#4B0082';this.style.color='#F2F0E9'" onmouseout="this.style.background='#fff';this.style.color='#4B0082'">
+      <div id="download-btn-wrap" style="padding:0 32px 20px;background:var(--card)">
+        <button id="dl-btn" onclick="downloadPDF()" style="width:100%;padding:13px;border-radius:30px;border:1.5px solid var(--purple);background:transparent;color:#c8b3ff;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.3px;font-family:inherit;transition:background .15s,color .15s"
+          onmouseover="this.style.background='#8b5cf6';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#c8b3ff'">
           Descargar diagnóstico completo
         </button>
       </div>
-      <div style="padding:0 32px 24px;background:#fff">
+      <div id="wa-wrap" style="padding:0 32px 24px;background:var(--card)">
         <a id="wa-btn" href="" target="_blank" rel="noopener"
-          style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:8px;background:#25D366;color:#fff;font-size:13px;font-weight:700;text-decoration:none;letter-spacing:.3px;transition:background .15s"
+          style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:30px;background:#25D366;color:#fff;font-size:13px;font-weight:700;text-decoration:none;letter-spacing:.3px;transition:background .15s"
           onmouseover="this.style.background='#1da851'" onmouseout="this.style.background='#25D366'">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#fff" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Quiero mi sesión estratégica gratuita de 30 minutos
         </a>
       </div>
       <div class="pdf-result-footer">
-        <p style="font-style:italic;color:#4B0082;font-weight:600;font-size:11px;margin-bottom:6px">"Chromalab transforma la identidad visual en un sistema estratégico — no en un logo, en un lenguaje."</p>
+        <p style="font-style:italic;color:#c8b3ff;font-weight:600;font-size:11px;margin-bottom:6px;font-family:'Playfair Display',serif">"Chromalab transforma la identidad visual en un sistema estratégico — no en un logo, en un lenguaje."</p>
         <p>
           <a href="mailto:hola@chromalab.com.ar">hola@chromalab.com.ar</a> · 
           <a href="https://chromalab.com.ar/" target="_blank">chromalab.com.ar</a>
@@ -1007,16 +1085,14 @@ function showResult() {
     </div>`;
 
   requestAnimationFrame(() => {
-    radarDefs.forEach((rd,i) => {
+    radarDefs.forEach((d,i) => {
       const canvas = document.getElementById('rc'+i);
-      if(canvas) drawRadar(canvas, rd.labels, rd.scores, rd.winner);
+      if(canvas) drawRadar(canvas, d.rd.labels, d.rd.values, d.winner, d.rd.max);
     });
 
-    // Build dynamic WhatsApp message based on maturity level
     const waBtn = document.getElementById('wa-btn');
     if(waBtn) waBtn.href = `https://wa.me/5493513098168?text=${waMsg}`;
 
-    // Animate maturity bar
     setTimeout(() => {
       const fill = document.getElementById('madurez-fill');
       if(fill) fill.style.width = madurez.pct + '%';
@@ -1033,11 +1109,15 @@ function restart() {
   renderQ();
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// RENDER + NAVEGACIÓN (con auto-avance)
+// ─────────────────────────────────────────────────────────────────────────────
 function renderQ() {
   const q = questions[current];
-  document.getElementById('prog-section').textContent = q.section;
-  document.getElementById('prog-count').textContent   = `${current+1} / 36`;
-  document.getElementById('prog-fill').style.width    = `${Math.round(((current+1)/36)*100)}%`;
+  const ci = catIndexOf(current);
+  document.getElementById('prog-section').textContent = `Dimensión ${ci+1} de 6 · ${q.section}`;
+  document.getElementById('prog-count').textContent   = `${current+1} / ${TOTAL}`;
+  document.getElementById('prog-fill').style.width    = `${Math.round(((current+1)/TOTAL)*100)}%`;
   document.getElementById('sec-pill').textContent     = q.section;
   document.getElementById('q-num').textContent        = `Pregunta ${current+1}`;
   document.getElementById('q-text').textContent       = q.text;
@@ -1057,20 +1137,27 @@ function renderQ() {
 
   document.getElementById('btn-back').style.visibility = current===0 ? 'hidden' : 'visible';
   document.getElementById('btn-next').disabled = sel===null;
-  document.getElementById('btn-next').textContent = current===35 ? 'Ver mis resultados →' : 'Siguiente →';
+  document.getElementById('btn-next').textContent = current===TOTAL-1 ? 'Ver mis resultados →' : 'Siguiente →';
 }
 
 function selectAnswer(letter) {
   answers[current] = letter;
   renderQ();
+  // Auto-avance: reduce a la mitad los clicks del test.
+  // En la última pregunta no auto-avanzamos: el botón "Ver mis resultados" da cierre explícito.
+  if(current < TOTAL-1) {
+    const idx = current;
+    setTimeout(() => {
+      if(current === idx && answers[idx] !== null) { current++; renderQ(); }
+    }, 320);
+  }
 }
 
 document.getElementById('btn-next').addEventListener('click', (e) => {
   if(answers[current]===null) return;
-  if(current===35){
+  if(current===TOTAL-1){
     e.stopPropagation();
-    // Pequeño delay para evitar click-through al modal en desktop
-    setTimeout(() => openEmailModal(), 50);
+    setTimeout(() => finishTest(), 50);
     return;
   }
   current++;
@@ -1081,19 +1168,35 @@ document.getElementById('btn-back').addEventListener('click', () => {
   if(current>0){ current--; renderQ(); }
 });
 
+function finishTest() {
+  // Si ya dejó su email antes (localStorage), no se lo volvemos a pedir
+  const savedEmail = getSavedEmail();
+  if(savedEmail) {
+    showResult();
+    const _p = calcPerfiles();
+    const _m = calcMadurez(_p);
+    sendData(savedEmail, window.location.href, buildPayload(_p, _m));
+    return;
+  }
+  openEmailModal();
+}
+
 if(!initFromURL()) renderQ();
 
-// ── EMAIL MODAL ──────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// EMAIL MODAL
+// ─────────────────────────────────────────────────────────────────────────────
+function getSavedEmail() {
+  try { return localStorage.getItem('chromalab_adn_email') || null; } catch(e) { return null; }
+}
+function saveEmail(email) {
+  try { localStorage.setItem('chromalab_adn_email', email); } catch(e) {}
+}
 
 function openEmailModal() {
   const overlay = document.getElementById('email-modal');
   overlay.style.display = 'flex';
-
-  // Quitamos el foco del botón "Ver mis resultados" para que Enter no lo reactive
   if (document.activeElement) document.activeElement.blur();
-
-  // En desktop, ponemos el foco en el input con un pequeño delay
-  // para que el modal esté completamente renderizado
   const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   if (isDesktop) {
     setTimeout(() => {
@@ -1123,49 +1226,57 @@ document.getElementById('modal-submit').addEventListener('click', async () => {
   btn.disabled = true;
   btn.textContent = 'Un momento…';
 
+  saveEmail(email);
   document.getElementById('email-modal').style.display = 'none';
   showResult();
 
-  // Calcular perfiles para enviar a HubSpot con las 6 dimensiones
   const _p = calcPerfiles();
   const _m = calcMadurez(_p);
-  sendData(email, window.location.href, {
-    espectro:  _p.espectro,
-    morfologia: _p.morfo,
-    textura:   _p.textura,
-    ritmo:     _p.ritmo,
-    tono:      _p.tono,
-    escala:    _p.escala,
-    madurez:   _m.nivel,
-  });
+  sendData(email, window.location.href, buildPayload(_p, _m));
 
   btn.disabled = false;
   btn.textContent = 'Ver mi resultado →';
 });
 
-// ── INIT FROM URL (link compartido) ──────────────────────────────────────────
-// Si la URL tiene ?r= cargamos las respuestas y mostramos el modal
-// para que también quede registrado el email de quien lo ve
+function buildPayload(p, m) {
+  return {
+    espectro:   p.espectro,
+    morfologia: p.morfo,
+    textura:    p.textura,
+    ritmo:      p.ritmo,
+    tono:       p.tono,
+    escala:     p.escala,
+    madurez:    `${m.nivel} (${m.pct}%)`,
+  };
+}
 
+// ─────────────────────────────────────────────────────────────────────────────
+// INIT DESDE URL (link compartido con ?r=)
+// ─────────────────────────────────────────────────────────────────────────────
 function initFromURL() {
   const params = new URLSearchParams(window.location.search);
   const r = params.get('r');
-  if(r && r.length === 36 && /^[AB]+$/.test(r)) {
-    for(let i = 0; i < 36; i++) answers[i] = r[i];
+  if(r && r.length === TOTAL && /^[AB]+$/.test(r)) {
+    for(let i = 0; i < TOTAL; i++) answers[i] = r[i];
     document.getElementById('question-view').style.display = 'none';
     document.getElementById('progress-wrap').style.display = 'none';
-    // Mostramos el modal — al confirmar el email se muestra el resultado
-    openEmailModal();
+    // Si ya conocemos su email, mostramos directo; si no, pedimos email
+    if(getSavedEmail()) {
+      showResult();
+    } else {
+      openEmailModal();
+    }
     return true;
   }
   return false;
 }
 
-// ── GUARDAR EN GOOGLE SHEETS + HUBSPOT ───────────────────────────────────────
-// ⚠️  REEMPLAZÁ ESTE VALOR con tu URL de Google Apps Script:
+// ─────────────────────────────────────────────────────────────────────────────
+// GUARDAR EN GOOGLE SHEETS + HUBSPOT
+// ─────────────────────────────────────────────────────────────────────────────
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnAxxwBcgMTGh3zPOLjcdXSlDrrBKprpKWTiR0LV3VnhZlpHP4vHB9al47HTIVQxH6/exec';
 
-async function sendData(email, resultUrl, perfiles = {}) {
+async function sendData(email, resultUrl, perfilesData = {}) {
   try {
     if(!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'TU_APPS_SCRIPT_URL') return;
     await fetch(APPS_SCRIPT_URL, {
@@ -1175,13 +1286,13 @@ async function sendData(email, resultUrl, perfiles = {}) {
       body: JSON.stringify({
         email,
         resultUrl,
-        espectro:   perfiles.espectro   || '',
-        morfologia: perfiles.morfologia || '',
-        textura:    perfiles.textura    || '',
-        ritmo:      perfiles.ritmo      || '',
-        tono:       perfiles.tono       || '',
-        escala:     perfiles.escala     || '',
-        madurez:    perfiles.madurez    || '',
+        espectro:   perfilesData.espectro   || '',
+        morfologia: perfilesData.morfologia || '',
+        textura:    perfilesData.textura    || '',
+        ritmo:      perfilesData.ritmo      || '',
+        tono:       perfilesData.tono       || '',
+        escala:     perfilesData.escala     || '',
+        madurez:    perfilesData.madurez    || '',
         date:       new Date().toISOString(),
       })
     });
@@ -1189,7 +1300,6 @@ async function sendData(email, resultUrl, perfiles = {}) {
     console.warn('Apps Script error:', e.message);
   }
 }
-
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -1206,13 +1316,13 @@ async function downloadPDF() {
     const canvas = await html2canvas(el, {
       scale: 2,
       useCORS: true,
-      backgroundColor: '#ffffff',
+      backgroundColor: '#111120',
       logging: false,
       scrollX: 0,
       scrollY: 0,
       windowWidth: el.scrollWidth,
       windowHeight: el.scrollHeight,
-      ignoreElements: el => el.id === 'download-btn-wrap'
+      ignoreElements: n => n.id === 'download-btn-wrap' || n.id === 'wa-wrap' || n.id === 'noise'
     });
 
     const imgData = canvas.toDataURL('image/png');
@@ -1225,30 +1335,23 @@ async function downloadPDF() {
     const contentW = pageW - margin * 2;
     const contentH = pageH - margin * 2;
 
-    // Escala la imagen al ancho del PDF
     const ratio = contentW / canvas.width;
     const imgW = canvas.width * ratio;
     const imgH = canvas.height * ratio;
 
-    // Cantidad de páginas necesarias
     const totalPages = Math.ceil(imgH / contentH);
 
     for (let page = 0; page < totalPages; page++) {
       if (page > 0) pdf.addPage();
-
-      // Posición Y de la imagen en esta página (negativa para simular scroll)
       const yPos = margin - page * contentH;
-
-      // Clip para no mostrar contenido fuera del área de la página
       pdf.setFillColor(255, 255, 255);
-      pdf.rect(0, 0, pageW, margin, 'F');                        // tapa arriba
-      pdf.rect(0, pageH - margin, pageW, margin, 'F');           // tapa abajo
-
+      pdf.rect(0, 0, pageW, margin, 'F');
+      pdf.rect(0, pageH - margin, pageW, margin, 'F');
       pdf.addImage(imgData, 'PNG', margin, yPos, imgW, imgH);
     }
 
     const now = new Date();
-    const fname = `chromalab-identidad-visual-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}.pdf`;
+    const fname = `chromalab-adn-visual-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}.pdf`;
     pdf.save(fname);
   } catch(e) {
     console.error(e);
