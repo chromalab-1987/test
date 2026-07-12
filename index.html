@@ -771,7 +771,7 @@ function calcMadurez(p) {
   // Porcentaje real: 60% coherencia estética + 40% madurez de sistema (respuestas B en 26-29)
   const pct = Math.round( (score/3)*60 + (p.eb/4)*40 );
 
-  if(pct >= 75) return { nivel:"Consolidada", pct, desc:"Tu identidad proyecta un sistema visual coherente y con base operativa — estás en el tercio superior de madurez. Hay fundamentos sólidos para escalar sin perder consistencia.", color:"#27AE60" };
+  if(pct >= 75) return { nivel:"Consolidada", pct, desc:"Tu identidad proyecta un sistema visual coherente y con base operativa — estás en el tercio superior de madurez. Ahora, el dato incómodo: las marcas consolidadas no suelen perder coherencia por falta de sistema, sino en el momento de escalar canales o delegar la ejecución. La pregunta que define tu siguiente nivel es: ¿tu sistema sobrevive sin vos en el día a día?", color:"#27AE60" };
   if(pct >= 45) return { nivel:"En desarrollo", pct, desc:"Varias dimensiones están alineadas pero hay tensiones sin resolver o zonas sin sistematizar. La mayoría de las marcas sin sistema definido se ubica en este rango — con ajustes puntuales podés consolidar el sistema.", color:"#E67E22" };
   return { nivel:"Emergente", pct, desc:"Tu identidad aún no opera como sistema unificado — es el punto de partida más común para marcas en crecimiento. Es el momento ideal para construirla con criterio antes de que escale.", color:"#E74C3C" };
 }
@@ -836,7 +836,7 @@ function calcAlertas(p) {
 function buildWAMessage(p, madurez) {
   const perfilStr = `${p.espectro} · ${p.morfo} · ${p.textura} · ${p.ritmo} · ${p.tono} · ${p.escala}`;
   const mensajes = {
-    "Consolidada": `Hola! Completé el Test de ADN Visual de Chromalab. Mi marca tiene un sistema coherente pero quiero llevarlo al siguiente nivel.\n\nMis perfiles: ${perfilStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)\n\n¿Podemos agendar una sesión para trabajar en eso?`,
+    "Consolidada": `Hola! Completé el Test de ADN Visual de Chromalab. Mi marca tiene un sistema coherente, pero el diagnóstico me dejó una pregunta: si mi sistema sobrevive sin mí cuando escale canales o delegue la ejecución.\n\nMis perfiles: ${perfilStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)\n\n¿Podemos agendar una sesión para ponerlo a prueba?`,
     "En desarrollo": `Hola! Completé el Test de ADN Visual de Chromalab y hay tensiones sin resolver en mi identidad visual.\n\nMis perfiles: ${perfilStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)\n\nMe gustaría agendar una sesión para resolver esas inconsistencias.`,
     "Emergente": `Hola! Completé el Test de ADN Visual de Chromalab. Mi identidad visual está en etapa inicial y quiero definirla con criterio.\n\nMis perfiles: ${perfilStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)\n\n¿Cuándo podemos hablar para arrancar?`,
   };
@@ -1001,6 +1001,13 @@ function showResult() {
   const alertas  = calcAlertas(p);
   const waMsg    = buildWAMessage(p, madurez);
 
+  const ctaCopies = {
+    "Consolidada":   "Tu sistema funciona — la sesión es para ponerlo a prueba. En 30 minutos hacemos un stress-test de tu identidad: qué pasa cuando sumás canales, delegás la ejecución o la marca tiene que crecer sin vos al lado. Salís sabiendo exactamente dónde está el próximo punto de quiebre y cómo blindarlo antes de llegar.",
+    "En desarrollo": "Con este diagnóstico como base, en 30 minutos identificamos cuáles son exactamente los ajustes puntuales que te separan de un sistema consolidado — qué está funcionando, qué tensión lo está frenando y cuál es el primer paso concreto para cerrar esa brecha.",
+    "Emergente":     "Con este diagnóstico como base, en 30 minutos trazamos el mapa de tu identidad desde cero pero con criterio: qué definir primero, qué errores caros evitar y cuál es el primer paso concreto para que tu marca nazca como sistema y no como un logo suelto.",
+  };
+  const ctaCopy = ctaCopies[madurez.nivel] || ctaCopies["En desarrollo"];
+
   const alertasHTML = alertas.map((a,i) =>
     `<li><div class="alerta-icon">${i+1}</div><span>${a}</span></li>`
   ).join('');
@@ -1056,7 +1063,7 @@ function showResult() {
         <div style="background:var(--bg);border:1px solid var(--card-border);border-radius:14px;padding:22px 24px;margin-bottom:4px">
           <div style="font-size:9px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--magenta);margin-bottom:10px;font-family:'DM Sans',sans-serif">Tu próximo paso</div>
           <div style="font-size:16px;font-weight:700;color:var(--lino);margin-bottom:10px;line-height:1.4;font-family:'Playfair Display',serif;font-style:italic">Sesión estratégica gratuita · 30 minutos</div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.75">Con este diagnóstico como base, en 30 minutos identificamos exactamente qué está funcionando en tu identidad, qué tensiones está generando y cuál es el primer paso concreto para resolverlas — ya sea construyendo desde cero o potenciando lo que ya tenés.</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.75">${ctaCopy}</div>
         </div>
       </div>
       <div id="download-btn-wrap" style="padding:0 32px 20px;background:var(--card)">
