@@ -1334,15 +1334,7 @@ document.getElementById('btn-back').addEventListener('click', () => {
 });
 
 function finishTest() {
-  // Si ya dejó su email antes (localStorage), no se lo volvemos a pedir
-  const savedEmail = getSavedEmail();
-  if(savedEmail) {
-    showResult();
-    const _p = calcPerfiles();
-    const _m = calcMadurez(_p);
-    sendData(savedEmail, window.location.href, buildPayload(_p, _m));
-    return;
-  }
+  // Siempre pedimos el correo; si ya dejó uno antes, viene precargado para confirmarlo o cambiarlo
   openEmailModal();
 }
 
@@ -1358,27 +1350,32 @@ function saveEmail(email) {
   try { localStorage.setItem('chromalab_adn_email', email); } catch(e) {}
 }
 
-function updateModalTeaser() {
+function updateModalTeaser(hasSaved) {
   try {
     const el = document.getElementById('modal-text');
     if(!el) return;
     const g = calcBrechas(calcPerfiles());
-    el.textContent = g.mayor
-      ? `Tu diagnóstico está listo: ${g.alineadas} de 5 dimensiones alineadas entre tu marca de hoy y la que querés, y una brecha importante en ${g.mayor.label}. Dejanos tu correo para ver el detalle y descargarlo en PDF.`
-      : `Tu diagnóstico está listo: tu marca de hoy y la que querés están bastante alineadas (${g.alineadas} de 5 dimensiones). Dejanos tu correo para ver el detalle y descargarlo en PDF.`;
+    const base = g.mayor
+      ? `Tu diagnóstico está listo: ${g.alineadas} de 5 dimensiones alineadas entre tu marca de hoy y la que querés, y una brecha importante en ${g.mayor.label}.`
+      : `Tu diagnóstico está listo: tu marca de hoy y la que querés están bastante alineadas (${g.alineadas} de 5 dimensiones).`;
+    el.textContent = hasSaved
+      ? `${base} Usamos el último correo que dejaste: confirmalo o cambialo para ver el detalle y descargarlo en PDF.`
+      : `${base} Dejanos tu correo para ver el detalle y descargarlo en PDF.`;
   } catch(e) {}
 }
 
 function openEmailModal() {
-  updateModalTeaser();
   const overlay = document.getElementById('email-modal');
+  const input = document.getElementById('modal-email');
+  const saved = getSavedEmail();
+  if (input) input.value = saved || '';
+  updateModalTeaser(!!saved);
   overlay.style.display = 'flex';
   if (document.activeElement) document.activeElement.blur();
   const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   if (isDesktop) {
     setTimeout(() => {
-      const input = document.getElementById('modal-email');
-      if (input) input.focus();
+      if (input) { input.focus(); if (saved && input.select) input.select(); }
     }, 150);
   }
 }
@@ -1447,12 +1444,8 @@ function initFromURL() {
     for(let i = 0; i < TOTAL; i++) answers[i] = r[i];
     document.getElementById('question-view').style.display = 'none';
     document.getElementById('progress-wrap').style.display = 'none';
-    // Si ya conocemos su email, mostramos directo; si no, pedimos email
-    if(getSavedEmail()) {
-      showResult();
-    } else {
-      openEmailModal();
-    }
+    // Siempre pedimos el correo (precargado si ya lo conocemos)
+    openEmailModal();
     return true;
   }
   return false;
