@@ -8,16 +8,16 @@
 <!-- OG / Social sharing -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Test de ADN Visual · Chromalab">
-<meta property="og:description" content="30 preguntas para descubrir el ADN visual de tu marca: 6 dimensiones, tu nivel de madurez y las alertas de tu identidad. Diagnóstico gratuito e instantáneo.">
+<meta property="og:description" content="34 preguntas para descubrir el ADN visual de tu marca: cómo es hoy vs. cómo querés que sea, tu nivel de madurez y las alertas de tu identidad. Diagnóstico gratuito e instantáneo.">
 <meta property="og:url" content="https://test.chromalab.com.ar/">
 <link rel="canonical" href="https://test.chromalab.com.ar/">
 <!-- ⚠️ Subí una imagen de 1200x630 y reemplazá esta URL para que el share se vea con preview -->
 <meta property="og:image" content="https://chromalab.com.ar/og-test-adn.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Test de ADN Visual · Chromalab">
-<meta name="twitter:description" content="30 preguntas para descubrir el ADN visual de tu marca: 6 dimensiones, tu nivel de madurez y las alertas de tu identidad. Diagnóstico gratuito e instantáneo.">
+<meta name="twitter:description" content="34 preguntas para descubrir el ADN visual de tu marca: cómo es hoy vs. cómo querés que sea, tu nivel de madurez y las alertas de tu identidad. Diagnóstico gratuito e instantáneo.">
 <meta name="twitter:image" content="https://chromalab.com.ar/og-test-adn.jpg">
-<meta name="description" content="Descubrí el ADN visual de tu marca en 4 minutos. 6 dimensiones, diagnóstico estratégico personalizado y descargable en PDF.">
+<meta name="description" content="Descubrí el ADN visual de tu marca en 6 minutos: cómo es hoy vs. cómo querés que sea. Diagnóstico estratégico personalizado y descargable en PDF.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -458,6 +458,39 @@
     .pdf-grid { grid-template-columns: 1fr 1fr; }
   }
 
+
+  /* ── HOY / IDEAL ── */
+  .mode-pill {
+    display: inline-block; margin-left: 8px; padding: 5px 14px; border-radius: 30px;
+    font-size: 9px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase;
+    margin-bottom: 18px; font-family: 'DM Sans', sans-serif;
+  }
+  .mode-pill.hoy   { background: rgba(56,189,248,.12); color: #7dd3fc; border: 1px solid rgba(56,189,248,.35); }
+  .mode-pill.ideal { background: rgba(217,70,239,.12); color: #f0abfc; border: 1px solid rgba(217,70,239,.35); }
+  .q-hint { font-size: 12px; color: var(--text-muted); font-style: italic; line-height: 1.6; margin-bottom: 14px; }
+
+  /* ── COMPARATIVO HOY vs QUERÉS ── */
+  .cmp-sum { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+  .cmp-stat { flex: 1; min-width: 110px; background: var(--bg-2); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px 14px; }
+  .cmp-stat b { display: block; font-size: 20px; font-family: 'Playfair Display', serif; font-style: italic; color: var(--lino); margin-bottom: 2px; }
+  .cmp-stat span { font-size: 10px; color: var(--text-muted); }
+  .cmp-row { background: var(--bg-2); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; }
+  .cmp-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .cmp-dim { font-size: 9px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: var(--purple); font-family: 'DM Sans', sans-serif; }
+  .cmp-chip { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .cmp-chip.ok     { background: rgba(52,199,89,.14);  color: #6ee7a0; }
+  .cmp-chip.matiz  { background: rgba(245,166,35,.14); color: #fbbf6a; }
+  .cmp-chip.brecha { background: rgba(231,76,60,.16);  color: #ff8a7a; }
+  .cmp-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cmp-col .k { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+  .cmp-col .k.hoy { color: #7dd3fc; }
+  .cmp-col .k.ideal { color: #f0abfc; }
+  .cmp-col .n { font-size: 13px; font-weight: 700; color: var(--lino); font-family: 'Playfair Display', serif; font-style: italic; margin-bottom: 2px; }
+  .cmp-col .s { font-size: 10px; color: var(--text-muted); line-height: 1.5; }
+  .radar-legend { display: flex; gap: 12px; margin-top: 6px; font-size: 9px; font-weight: 700; letter-spacing: .5px; }
+  .radar-legend .lg-hoy { color: #8b5cf6; }
+  .radar-legend .lg-ideal { color: #d946ef; }
+
   /* ── EMAIL MODAL ── */
   .email-modal-overlay {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -515,7 +548,7 @@
   <div class="email-modal">
     <div class="modal-eyebrow">Test de ADN Visual · Chromalab</div>
     <h3>¿A dónde guardamos tu diagnóstico?</h3>
-    <p>Dejanos tu correo para guardar tu resultado y que puedas volver a verlo cuando quieras. También vas a poder descargarlo en PDF ahora mismo.</p>
+    <p id="modal-text">Dejanos tu correo para guardar tu resultado y que puedas volver a verlo cuando quieras. También vas a poder descargarlo en PDF ahora mismo.</p>
     <input type="email" id="modal-email" placeholder="tu@email.com" autocomplete="email" />
     <div class="modal-error" id="modal-error">Por favor ingresá un email válido.</div>
     <button class="btn-modal-primary" id="modal-submit">Ver mi resultado →</button>
@@ -533,12 +566,12 @@
 <!-- HERO -->
 <div class="hero">
   <h1>Test de <em>ADN Visual</em></h1>
-  <p>30 preguntas para mapear las 6 dimensiones del ADN visual de tu marca. Al final te llevás un diagnóstico estratégico: tu perfil, tu nivel de madurez y las señales de alerta de tu identidad.</p>
-  <p class="hero-note">No necesitás tener nada definido: respondé por instinto, pensando en cómo querés que se sienta tu marca.</p>
+  <p>34 preguntas para mapear las 6 dimensiones del ADN visual de tu marca: cómo es hoy y cómo querés que sea. Al final te llevás un diagnóstico estratégico: la distancia entre ambas, tu nivel de madurez y las señales de alerta de tu identidad.</p>
+  <p class="hero-note">Primero respondé cómo es tu marca hoy; después, cómo querés que sea. Si algo no está definido, elegí la opción más cercana.</p>
   <div class="hero-badges">
-    <span class="badge">30 preguntas</span>
-    <span class="badge magenta">≈ 4 minutos</span>
-    <span class="badge">6 dimensiones</span>
+    <span class="badge">34 preguntas</span>
+    <span class="badge magenta">≈ 6 minutos</span>
+    <span class="badge">Hoy vs. ideal</span>
     <span class="badge magenta">Resultado instantáneo</span>
   </div>
 </div>
@@ -560,7 +593,9 @@
     <div class="q-card">
       <div class="q-card-body">
         <div class="sec-pill" id="sec-pill">Espectro Cromático</div>
+        <span class="mode-pill hoy" id="mode-pill">Hoy · cómo es</span>
         <div class="q-num" id="q-num">Pregunta 1</div>
+        <div class="q-hint" id="q-hint"></div>
         <div class="q-text" id="q-text"></div>
         <div class="options" id="options"></div>
       </div>
@@ -590,47 +625,54 @@
 //          21-25 Tono · 26-29 Madurez de Sistema (Escala)
 // ─────────────────────────────────────────────────────────────────────────────
 const questions = [
-  // ── ESPECTRO CROMÁTICO (6) — round-robin de 4 perfiles ──
-  { section:"Espectro Cromático", text:"Si tu marca fuera un espacio físico y un cliente entra por primera vez, ¿cuál es la sensación térmica y lumínica que percibe?", a:{title:"Galería minimalista",desc:"Luz blanca, fría, techos altos y mucho aire."}, b:{title:"Estudio boutique al atardecer",desc:"Luz cálida, materiales naturales, atmósfera envolvente."} },
-  { section:"Espectro Cromático", text:"Imaginá que la identidad de tu marca es un objeto que podés sostener. ¿Cómo se siente en tus manos?", a:{title:"Liviana y etérea",desc:"Como un papel de seda o cristal soplado. Colores pasteles, desaturados."}, b:{title:"Sólida y rotunda",desc:"Como un bloque de mármol o acero. Colores profundos, alto contraste."} },
-  { section:"Espectro Cromático", text:"Cuando la marca no está hablando (sin textos, solo color), ¿qué tipo de silencio proyecta?", a:{title:"Silencio vibrante y eléctrico",desc:"Como la calma antes de una tormenta. Colores saturados, neones, energía."}, b:{title:"Silencio sereno y estable",desc:"Como un lago al amanecer. Colores tierra, neutros, balance."} },
-  { section:"Espectro Cromático", text:"En un feed lleno de ruido visual, ¿cómo decide destacar tu marca?", a:{title:"Faro de pureza",desc:"Limpieza absoluta que obliga a descansar la vista. Blancos y espacios vacíos."}, b:{title:"Imán de atención",desc:"Una mancha de color audaz imposible de ignorar. Bloques sólidos y vibrantes."} },
-  { section:"Espectro Cromático", text:"Si tu paleta fuera un material precioso que el cliente puede tocar, ¿cuál sería?", a:{title:"Terciopelo y obsidiana",desc:"Profundidad que absorbe la luz. Oscuridad con peso y elegancia."}, b:{title:"Arcilla y lino crudo",desc:"Pigmentos que vienen de la tierra. Calidez sin artificio."} },
-  { section:"Espectro Cromático", text:"Después de interactuar con tu marca, ¿qué sabor cromático le queda al cliente en la memoria?", a:{title:"Claridad y optimismo",desc:"Colores claros, amarillos, turquesas."}, b:{title:"Autoridad y misterio",desc:"Colores oscuros, borgoñas, azul noche."} },
+  // ═══ PARTE 1 · TU MARCA HOY (preguntas de realidad, ancladas en lo observable) ═══
+  // ── Espectro Cromático · HOY ──
+  { mode:"hoy", section:"Espectro Cromático", text:"Mirá tu logo, tu web y tus últimas publicaciones. ¿Qué colores predominan?", a:{title:"Luminosos",desc:"Blancos, pasteles o colores vivos y brillantes."}, b:{title:"Profundos",desc:"Negros, azul noche, burdeos o tonos tierra cálidos."} },
+  { mode:"hoy", section:"Espectro Cromático", text:"En tus piezas actuales, ¿qué pesa más?", a:{title:"Aire y neutros claros",desc:"Blanco, gris y pocos acentos de color."}, b:{title:"Color saturado e intenso",desc:"Colores vivos que se imponen a primera vista."} },
+  { mode:"hoy", section:"Espectro Cromático", text:"Pensá en los tonos más oscuros o cálidos que usás: ¿cuáles son?", a:{title:"Negros, azul noche, burdeos",desc:"Tonos profundos con aire de prestigio."}, b:{title:"Tierras, ocres y verdes",desc:"Tonos cálidos que remiten a lo natural."} },
+  // ── Morfología de Marca · HOY ──
+  { mode:"hoy", section:"Morfología de Marca", text:"Mirá tu logo y tus piezas actuales. ¿Qué predomina en las formas?", a:{title:"Líneas rectas y ángulos",desc:"Formas geométricas, definidas y ordenadas."}, b:{title:"Curvas y trazos suaves",desc:"Formas redondeadas, fluidas y cercanas."} },
+  { mode:"hoy", section:"Morfología de Marca", text:"¿Cómo están armadas hoy tus piezas (folletos, web, packaging)?", a:{title:"Con grilla y estructura",desc:"Márgenes, módulos y proporciones definidas."}, b:{title:"Con intuición",desc:"Se acomodan a ojo hasta que se ven naturales."} },
+  { mode:"hoy", section:"Morfología de Marca", text:"Hoy, ¿qué sensación transmite tu imagen a quien la ve?", a:{title:"Seguridad y respaldo",desc:"Se ve sólida, medida y confiable."}, b:{title:"Cercanía y buen trato",desc:"Se ve abierta, amable y humana."} },
+  // ── Contraste de Textura · HOY ──
+  { mode:"hoy", section:"Contraste de Textura", text:"Mirá tus fotos, tu packaging o tu papelería. ¿Qué terminación predomina?", a:{title:"Brillante y nítida",desc:"Superficies lisas, alta definición, detalle limpio."}, b:{title:"Mate y con carácter",desc:"Papel grueso, grano, texturas y materiales naturales."} },
+  { mode:"hoy", section:"Contraste de Textura", text:"Al mirar tus piezas de cerca, ¿qué se ve hoy?", a:{title:"Bordes impecables",desc:"Cero imperfecciones, todo limpio y preciso."}, b:{title:"Pequeñas irregularidades",desc:"Trama, grano o detalles que le dan carácter."} },
+  { mode:"hoy", section:"Contraste de Textura", text:"El ambiente que transmite hoy tu empresa se parece más a:", a:{title:"Una oficina moderna",desc:"Tecnología, eficiencia, todo bajo control."}, b:{title:"Un taller con historia",desc:"Algo vivo, con huella humana."} },
+  // ── Ritmo Compositivo · HOY ──
+  { mode:"hoy", section:"Ritmo Compositivo", text:"Mirá tus últimas publicaciones o presentaciones. ¿Cómo están organizados los elementos?", a:{title:"Alineados y simétricos",desc:"Con márgenes prolijos y un orden claro."}, b:{title:"Con capas y asimetría",desc:"Elementos que se superponen y rompen la grilla."} },
+  { mode:"hoy", section:"Ritmo Compositivo", text:"¿Qué sensación dejan hoy tus piezas?", a:{title:"Estabilidad",desc:"«Esta empresa es confiable y está en su lugar»."}, b:{title:"Impulso",desc:"«Esta empresa está creciendo y pasan cosas»."} },
+  { mode:"hoy", section:"Ritmo Compositivo", text:"¿Cómo recorre hoy el cliente tu web o tu catálogo?", a:{title:"En orden claro",desc:"De arriba hacia abajo, paso a paso."}, b:{title:"Explorando libremente",desc:"Saltando entre puntos de interés."} },
+  // ── Tono de Voz Visual · HOY ──
+  { mode:"hoy", section:"Tono de Voz Visual", text:"Cuando lanzás un producto o servicio nuevo, ¿cómo lo comunicás hoy?", a:{title:"Directo",desc:"Título grande, mensaje claro, sin vueltas."}, b:{title:"Con intriga",desc:"Se va descubriendo de a poco."} },
+  { mode:"hoy", section:"Tono de Voz Visual", text:"Para convencer a un cliente indeciso, ¿qué usás hoy?", a:{title:"Datos y argumentos",desc:"Beneficios concretos y evidencia."}, b:{title:"Una experiencia o una historia",desc:"Que lo lleve a decidir por sí mismo."} },
+  { mode:"hoy", section:"Tono de Voz Visual", text:"¿Desde qué lugar le hablás hoy a tu cliente?", a:{title:"Desde la autoridad",desc:"Somos expertos y lo mostramos."}, b:{title:"Desde la conversación",desc:"Proponemos y escuchamos."} },
+  // ── Madurez de Sistema · HOY (solo realidad) ──
+  { mode:"hoy", section:"Madurez de Sistema", text:"¿Qué pasa hoy cuando tu logo se usa muy chico (redes, firma de mail, sello)?", a:{title:"Pierde detalle o se lee mal",desc:"A veces hay que improvisar otra versión."}, b:{title:"Se ve bien",desc:"Hay versiones preparadas para cada tamaño."} },
+  { mode:"hoy", section:"Madurez de Sistema", text:"Si un empleado o proveedor nuevo tiene que hacer una pieza para tu empresa, ¿con qué cuenta hoy?", a:{title:"Con el logo y algunos archivos",desc:"El resto se explica de palabra."}, b:{title:"Con una guía o manual de marca",desc:"Por escrito, con criterios claros."} },
+  { mode:"hoy", section:"Madurez de Sistema", text:"Cuando surge un formato nuevo (un reel, un banner, un cartel, un packaging), ¿qué pasa hoy?", a:{title:"Se resuelve sobre la marcha",desc:"Con lo que haya a mano."}, b:{title:"Ya hay criterios y plantillas",desc:"Se adapta sin improvisar."} },
+  { mode:"hoy", section:"Madurez de Sistema", text:"Si el año que viene abrís otra sucursal, canal o línea de producto, ¿tu imagen está lista?", a:{title:"Habría que definir bastante desde cero",desc:"La imagen acompaña hasta donde llega hoy."}, b:{title:"Sí, ya está prevista",desc:"Hay variantes y criterios definidos."} },
 
-  // ── MORFOLOGÍA DE MARCA (5) — eje único: recto/geométrico vs curvo/orgánico ──
-  { section:"Morfología de Marca", text:"Si tu marca fuera un dibujo a mano alzada, ¿cómo se movería el lápiz sobre el papel?", a:{title:"Movimientos rectos y precisos",desc:"Ángulos, cuadrículas, orden absoluto."}, b:{title:"Movimientos fluidos y circulares",desc:"Curvas, lazos, libertad de trazo."} },
-  { section:"Morfología de Marca", text:"Cuando un cliente 'choca' visualmente con tu marca, ¿qué sensación física debería tener?", a:{title:"Seguridad y protección",desc:"Esquinas marcadas, estructuras que parecen edificios o escudos."}, b:{title:"Amabilidad y apertura",desc:"Bordes redondeados, suavidad visual, formas que invitan al tacto."} },
-  { section:"Morfología de Marca", text:"Si recortaras la silueta de tu logo con una tijera, ¿qué camino sigue el corte?", a:{title:"Rectas y ángulos",desc:"El filo avanza en tramos definidos, con giros precisos."}, b:{title:"Curvas continuas",desc:"La tijera nunca se detiene: todo fluye en un mismo gesto."} },
-  { section:"Morfología de Marca", text:"¿Sobre qué base se construye la forma de tu identidad?", a:{title:"Sobre la grilla",desc:"Ejes, módulos, proporciones exactas. El orden es visible."}, b:{title:"Sobre el gesto",desc:"El trazo manda y la estructura acompaña. La mano es visible."} },
-  { section:"Morfología de Marca", text:"Si tu marca existiera en el mundo físico antes que en el papel, ¿dónde la encontraríamos?", a:{title:"En la arquitectura",desc:"Cristales, panales, fachadas. Geometría que se repite con precisión."}, b:{title:"En lo vivo",desc:"Ríos, hojas, olas. Formas que nunca se repiten igual."} },
-
-  // ── CONTRASTE DE TEXTURA (5) ──
-  { section:"Contraste de Textura", text:"Si un cliente pudiera cerrar los ojos y tocar tu marca, ¿qué sensación recorrería sus dedos?", a:{title:"Lisa, fría y pulida",desc:"Como el cristal o el aluminio anodizado."}, b:{title:"Con carácter y calidez",desc:"Como el papel de alto gramaje o la piedra natural."} },
-  { section:"Contraste de Textura", text:"¿Cómo interactúa la identidad de tu marca con la iluminación de su entorno?", a:{title:"Refleja la luz",desc:"Brillante, limpia y nítida. Acabados glossy, alta definición."}, b:{title:"Absorbe la luz",desc:"Mate, profunda y contenida. Texturas orgánicas, grano cinematográfico."} },
-  { section:"Contraste de Textura", text:"Cuando te acercás mucho a los elementos gráficos de la marca, ¿qué descubrís?", a:{title:"Nitidez absoluta",desc:"Bordes vectoriales impecables y una limpieza quirúrgica."}, b:{title:"Un grano o trama",desc:"Pequeñas irregularidades, texturas de impresión que le dan profundidad."} },
-  { section:"Contraste de Textura", text:"¿Qué temperatura transmite el ambiente visual de tu identidad?", a:{title:"Clima controlado",desc:"Aire acondicionado, tecnología, aséptico y eficiente."}, b:{title:"Clima atmosférico",desc:"Humedad, tierra, sol. Algo que se siente vivo y cambiante."} },
-  { section:"Contraste de Textura", text:"¿Cómo envejece mejor la estética de tu marca?", a:{title:"Impecable siempre",desc:"Se mantiene nueva y reluciente. Estética new-tech."}, b:{title:"Ganando carácter",desc:"La pátina y el uso le aportan valor. Estética heritage."} },
-
-  // ── RITMO COMPOSITIVO (5) ──
-  { section:"Ritmo Compositivo", text:"Si tu marca fuera una pieza musical, ¿cómo sonaría su base rítmica?", a:{title:"Un metrónomo constante",desc:"Notas largas, espacios de silencio y una estructura previsible."}, b:{title:"Un solo de jazz o beat electrónico",desc:"Cambios de ritmo, sorpresa y energía ascendente."} },
-  { section:"Ritmo Compositivo", text:"Imaginá los elementos de tu marca sobre una mesa. ¿Cómo los organizarías?", a:{title:"Alineados perfectamente",desc:"Respetando márgenes y ejes invisibles. Simetría total."}, b:{title:"Superpuestos y dinámicos",desc:"Rompiendo bordes y creando capas de profundidad. Asimetría."} },
-  { section:"Ritmo Compositivo", text:"¿Qué sensación debe quedar en la retina del usuario tras ver una pieza de comunicación?", a:{title:"Estabilidad y aplomo",desc:"Nada se mueve, todo está en su lugar. Equilibrio estático."}, b:{title:"Impulso y tensión",desc:"Parece que algo está a punto de suceder. Equilibrio dinámico."} },
-  { section:"Ritmo Compositivo", text:"Si trazamos una línea imaginaria que cruza la identidad de tu marca, ¿cómo es esa línea?", a:{title:"Horizontal",desc:"Calma, horizonte, base sólida y descanso."}, b:{title:"Diagonal o vertical",desc:"Ambición, velocidad, ruptura y crecimiento."} },
-  { section:"Ritmo Compositivo", text:"¿Cómo querés que el cliente recorra visualmente tus diseños?", a:{title:"De manera lineal",desc:"Primero esto, luego aquello. Claridad jerárquica."}, b:{title:"De manera inmersiva",desc:"Que su ojo salte de un punto de interés a otro. Descubrimiento visual."} },
-
-  // ── TONO DE VOZ VISUAL (5) ──
-  { section:"Tono de Voz Visual", text:"Cuando tu marca presenta una novedad, ¿cómo lo anuncia visualmente?", a:{title:"Con contundencia",desc:"Tipografía grande, sin adornos. El mensaje ocupa todo el espacio disponible."}, b:{title:"Con susurro",desc:"El diseño invita a acercarse. La información se revela en capas, no de golpe."} },
-  { section:"Tono de Voz Visual", text:"Si tu marca tuviera que convencer a alguien, ¿cómo lo haría visualmente?", a:{title:"Con evidencia directa",desc:"Datos, jerarquía clara, sin rodeos. La composición es el argumento."}, b:{title:"Con atmósfera y evocación",desc:"Crea un estado emocional que lleva a la conclusión sin decirla explícitamente."} },
-  { section:"Tono de Voz Visual", text:"Cuando tu marca se dirige a su audiencia, ¿desde qué posición lo hace?", a:{title:"Desde la autoridad",desc:"Sabe lo que hace y lo muestra. No pide permiso para ocupar el espacio."}, b:{title:"Desde la conversación",desc:"Propone, no impone. El diseño abre un diálogo más que cerrar un argumento."} },
-  { section:"Tono de Voz Visual", text:"¿Cómo trata tu marca la información secundaria (fechas, datos, detalles técnicos)?", a:{title:"La jerarquiza con precisión",desc:"Cada dato tiene su lugar y su peso visual. Nada compite con lo principal."}, b:{title:"La integra en la narrativa",desc:"Los detalles se descubren al explorar. Forman parte de la experiencia."} },
-  { section:"Tono de Voz Visual", text:"Si una pieza de tu marca pudiera tener un volumen, ¿a qué intensidad sonaría?", a:{title:"Alto y claro",desc:"Sin ambigüedades. Lo que dice lo dice en voz alta y con convicción."}, b:{title:"Moderado y envolvente",desc:"No grita, pero tampoco murmura. Su presencia se siente antes de que te des cuenta."} },
-
-  // ── MADUREZ DE SISTEMA (4) — ¿tu marca es un logo o un sistema? ──
-  { section:"Madurez de Sistema", text:"Imaginá tu logo reducido al tamaño de un sello de 1 cm. ¿Qué pasa?", a:{title:"Pierde matices",desc:"Tiene detalles que en pequeño desaparecen. Necesita espacio para respirar."}, b:{title:"Sigue funcionando",desc:"Fue pensado para vivir en cualquier tamaño sin perder reconocimiento."} },
-  { section:"Madurez de Sistema", text:"Si mañana otra persona tuviera que diseñar una pieza de tu marca, ¿con qué se guía?", a:{title:"El logo y algunos archivos",desc:"El criterio vive en tu cabeza. Cada pieza depende de quién la haga."}, b:{title:"Reglas documentadas",desc:"Usos, variantes, qué sí y qué no. Cualquiera puede sostener la coherencia."} },
-  { section:"Madurez de Sistema", text:"Cuando aparece un formato nuevo (un reel, un banner, un packaging), ¿qué pasa con tu identidad?", a:{title:"Se resuelve en el momento",desc:"Cada pieza se improvisa con lo que hay a mano."}, b:{title:"El sistema ya lo prevé",desc:"Hay versiones y criterios para adaptarse sin romperse."} },
-  { section:"Madurez de Sistema", text:"Si tu negocio duplicara sus canales el año que viene, ¿tu identidad está lista para acompañarlo?", a:{title:"Habría que crear mucho desde cero",desc:"La marca acompaña hasta donde llega hoy."}, b:{title:"Ya está preparada",desc:"Submarcas, aplicaciones y variantes previstas. Es un sistema, no solo un logo."} }
+  // ═══ PARTE 2 · LA MARCA QUE QUERÉS (preguntas de aspiración, en espejo con la Parte 1) ═══
+  // ── Espectro Cromático · IDEAL ──
+  { mode:"ideal", section:"Espectro Cromático", text:"Si pudieras elegir libremente, ¿qué colores querés que predominen en tu marca?", a:{title:"Luminosos",desc:"Blancos, pasteles o colores vivos y brillantes."}, b:{title:"Profundos",desc:"Negros, azul noche, burdeos o tonos tierra cálidos."} },
+  { mode:"ideal", section:"Espectro Cromático", text:"¿Qué querés que pese más en tu imagen?", a:{title:"Aire y neutros claros",desc:"Blanco, gris y pocos acentos de color."}, b:{title:"Color saturado e intenso",desc:"Colores vivos que se imponen a primera vista."} },
+  { mode:"ideal", section:"Espectro Cromático", text:"Si tuvieras que elegir tonos oscuros o cálidos, ¿cuáles querés?", a:{title:"Negros, azul noche, burdeos",desc:"Tonos profundos con aire de prestigio."}, b:{title:"Tierras, ocres y verdes",desc:"Tonos cálidos que remiten a lo natural."} },
+  // ── Morfología de Marca · IDEAL ──
+  { mode:"ideal", section:"Morfología de Marca", text:"Si pudieras rediseñar tu identidad, ¿qué formas querés que dominen?", a:{title:"Líneas rectas y ángulos",desc:"Formas geométricas, definidas y ordenadas."}, b:{title:"Curvas y trazos suaves",desc:"Formas redondeadas, fluidas y cercanas."} },
+  { mode:"ideal", section:"Morfología de Marca", text:"¿Cómo querés que se construyan tus piezas?", a:{title:"Con grilla y estructura",desc:"Márgenes, módulos y proporciones definidas."}, b:{title:"Con intuición",desc:"Se acomodan a ojo hasta que se ven naturales."} },
+  { mode:"ideal", section:"Morfología de Marca", text:"¿Qué sensación querés que transmita tu imagen?", a:{title:"Seguridad y respaldo",desc:"Se ve sólida, medida y confiable."}, b:{title:"Cercanía y buen trato",desc:"Se ve abierta, amable y humana."} },
+  // ── Contraste de Textura · IDEAL ──
+  { mode:"ideal", section:"Contraste de Textura", text:"¿Qué terminación querés para tu imagen?", a:{title:"Brillante y nítida",desc:"Superficies lisas, alta definición, detalle limpio."}, b:{title:"Mate y con carácter",desc:"Papel grueso, grano, texturas y materiales naturales."} },
+  { mode:"ideal", section:"Contraste de Textura", text:"Al mirar tus piezas de cerca, ¿qué querés que se vea?", a:{title:"Bordes impecables",desc:"Cero imperfecciones, todo limpio y preciso."}, b:{title:"Pequeñas irregularidades",desc:"Trama, grano o detalles que le dan carácter."} },
+  { mode:"ideal", section:"Contraste de Textura", text:"¿A qué querés que se parezca el ambiente de tu empresa?", a:{title:"Una oficina moderna",desc:"Tecnología, eficiencia, todo bajo control."}, b:{title:"Un taller con historia",desc:"Algo vivo, con huella humana."} },
+  // ── Ritmo Compositivo · IDEAL ──
+  { mode:"ideal", section:"Ritmo Compositivo", text:"¿Cómo querés que se organicen los elementos en tus piezas?", a:{title:"Alineados y simétricos",desc:"Con márgenes prolijos y un orden claro."}, b:{title:"Con capas y asimetría",desc:"Elementos que se superponen y rompen la grilla."} },
+  { mode:"ideal", section:"Ritmo Compositivo", text:"¿Qué sensación querés que dejen tus piezas?", a:{title:"Estabilidad",desc:"«Esta empresa es confiable y está en su lugar»."}, b:{title:"Impulso",desc:"«Esta empresa está creciendo y pasan cosas»."} },
+  { mode:"ideal", section:"Ritmo Compositivo", text:"¿Cómo querés que el cliente recorra tu web o tu catálogo?", a:{title:"En orden claro",desc:"De arriba hacia abajo, paso a paso."}, b:{title:"Explorando libremente",desc:"Saltando entre puntos de interés."} },
+  // ── Tono de Voz Visual · IDEAL ──
+  { mode:"ideal", section:"Tono de Voz Visual", text:"¿Cómo querés comunicar un lanzamiento?", a:{title:"Directo",desc:"Título grande, mensaje claro, sin vueltas."}, b:{title:"Con intriga",desc:"Se va descubriendo de a poco."} },
+  { mode:"ideal", section:"Tono de Voz Visual", text:"Para convencer a un cliente indeciso, ¿qué querés usar?", a:{title:"Datos y argumentos",desc:"Beneficios concretos y evidencia."}, b:{title:"Una experiencia o una historia",desc:"Que lo lleve a decidir por sí mismo."} },
+  { mode:"ideal", section:"Tono de Voz Visual", text:"¿Desde qué lugar querés hablarle a tu cliente?", a:{title:"Desde la autoridad",desc:"Somos expertos y lo mostramos."}, b:{title:"Desde la conversación",desc:"Proponemos y escuchamos."} }
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -671,72 +713,143 @@ const perfiles = {
 };
 
 const cats = ["Espectro Cromático","Morfología de Marca","Contraste de Textura","Ritmo Compositivo","Tono de Voz Visual","Madurez de Sistema"];
-const catRanges = [ [0,5],[6,10],[11,15],[16,20],[21,25],[26,29] ];
-const TOTAL = 30;
+// Rangos de preguntas (índices). PARTE 1 = HOY · PARTE 2 = IDEAL
+const HOY_RANGES   = { espectro:[0,2],   morfo:[3,5],   textura:[6,8],   ritmo:[9,11],  tono:[12,14], escala:[15,18] };
+const IDEAL_RANGES = { espectro:[19,21], morfo:[22,24], textura:[25,27], ritmo:[28,30], tono:[31,33] };
+const TOTAL = 34;
 let current = 0;
 const answers = new Array(TOTAL).fill(null);
-
-function catIndexOf(qIdx){
-  for(let i=0;i<catRanges.length;i++){ if(qIdx>=catRanges[i][0] && qIdx<=catRanges[i][1]) return i; }
-  return 0;
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SCORING
 // ─────────────────────────────────────────────────────────────────────────────
-function calcEspectroRaw(a) {
-  // Round-robin: cada perfil aparece 3 veces en 6 enfrentamientos
-  // P1: Éter vs Raíz | P2: Éter vs Ónix | P3: Prisma vs Raíz
-  // P4: Éter vs Prisma | P5: Ónix vs Raíz | P6: Prisma vs Ónix
-  let se=0,so=0,sr=0,sp=0;
-  if(a[0]==='A') se++; else sr++;
-  if(a[1]==='A') se++; else so++;
-  if(a[2]==='A') sp++; else sr++;
-  if(a[3]==='A') se++; else sp++;
-  if(a[4]==='A') so++; else sr++;
-  if(a[5]==='A') sp++; else so++;
-  return {se,so,sr,sp};
-}
-
 function countAB(a, from, to){
   let na=0, nb=0;
   for(let i=from;i<=to;i++){ if(a[i]==='A')na++; else if(a[i]==='B')nb++; }
   return {na, nb};
 }
 
+// Espectro: 2 ejes con 3 preguntas por modo (hoy / ideal)
+//   P1 (luz):   A = luminoso (Éter + Prisma)   · B = profundo (Ónix + Raíz)
+//   P2 (par claro):    A = Éter    · B = Prisma
+//   P3 (par profundo): A = Ónix    · B = Raíz
+// Cada respuesta suma votos; el grupo elegido en P1 hace que decida su par correspondiente.
+// El ganador siempre tiene 2 votos y el resto 1 o menos: no hay empates posibles.
+function calcEspectroFrom(a, s){
+  let e=0, o=0, r=0, p=0;
+  if(a[s]==='A'){ e++; p++; } else { o++; r++; }
+  if(a[s+1]==='A') e++; else p++;
+  if(a[s+2]==='A') o++; else r++;
+  return {e,o,r,p};
+}
+function espectroName(v){
+  const mx = Math.max(v.e, v.o, v.r, v.p);
+  if(v.e===mx) return "Éter Minimal";
+  if(v.o===mx) return "Ónix Prestigio";
+  if(v.r===mx) return "Raíz Orgánica";
+  return "Prisma Vibrante";
+}
+
+// Dimensiones binarias de 3 preguntas: 3-0 define polo, 2-1 = híbrido (con tendencia)
+const BIN_DIMS = {
+  morfo:   ["ADN Estructural","ADN Orgánico","ADN Híbrido"],
+  textura: ["Cristal Digital","Fibra Humana","Híbrido Tectónico"],
+  ritmo:   ["Pulso Cadencioso","Vibración Cinética","Síncopa Estructural"],
+  tono:    ["Voz Directa","Voz Evocadora","Voz Matizada"],
+};
+const NA_KEY = { morfo:'ma', textura:'ta', ritmo:'ra', tono:'tna' };
+const NB_KEY = { morfo:'mb', textura:'tb', ritmo:'rb', tono:'tnb' };
+const POLE_SHORT = { morfo:["Estructural","Orgánico"], textura:["Cristal","Fibra"], ritmo:["Cadencioso","Cinético"], tono:["Directa","Evocadora"] };
+const STYLE_KEYS = ['espectro','morfo','textura','ritmo','tono'];
+const DIM_LABELS = { espectro:"Espectro Cromático", morfo:"Morfología de Marca", textura:"Contraste de Textura", ritmo:"Ritmo Compositivo", tono:"Tono de Voz Visual" };
+
+function calcSet(a, R){
+  const ev = calcEspectroFrom(a, R.espectro[0]);
+  const out = { espectro: espectroName(ev), se:ev.e, so:ev.o, sr:ev.r, sp:ev.p };
+  Object.keys(BIN_DIMS).forEach(k => {
+    const c = countAB(a, R[k][0], R[k][1]);
+    out[k] = c.na===3 ? BIN_DIMS[k][0] : c.nb===3 ? BIN_DIMS[k][1] : BIN_DIMS[k][2];
+    out[NA_KEY[k]] = c.na;
+    out[NB_KEY[k]] = c.nb;
+  });
+  return out;
+}
+
 function calcPerfiles() {
   const a = answers;
-  const {se,so,sr,sp} = calcEspectroRaw(a);
-  const mx = Math.max(se,so,sr,sp);
-  let espectro;
-  if(se===mx)      espectro = "Éter Minimal";
-  else if(so===mx) espectro = "Ónix Prestigio";
-  else if(sr===mx) espectro = "Raíz Orgánica";
-  else             espectro = "Prisma Vibrante";
+  const hoy   = calcSet(a, HOY_RANGES);      // cómo es la marca hoy
+  const ideal = calcSet(a, IDEAL_RANGES);    // cómo quieren que sea
 
-  // Dimensiones binarias de 5 preguntas: >=4 define polo, 3-2 = híbrido
-  const m = countAB(a, 6, 10);
-  const morfo = m.na>=4 ? "ADN Estructural" : m.nb>=4 ? "ADN Orgánico" : "ADN Híbrido";
-
-  const t = countAB(a, 11, 15);
-  const textura = t.na>=4 ? "Cristal Digital" : t.nb>=4 ? "Fibra Humana" : "Híbrido Tectónico";
-
-  const r = countAB(a, 16, 20);
-  const ritmo = r.na>=4 ? "Pulso Cadencioso" : r.nb>=4 ? "Vibración Cinética" : "Síncopa Estructural";
-
-  const tn = countAB(a, 21, 25);
-  const tono = tn.na>=4 ? "Voz Directa" : tn.nb>=4 ? "Voz Evocadora" : "Voz Matizada";
-
-  // Madurez de sistema: 4 preguntas, cuenta de respuestas B (sistema)
-  const e = countAB(a, 26, 29);
+  // Madurez de sistema: 4 preguntas de realidad, cuenta de respuestas B (sistema)
+  const e = countAB(a, HOY_RANGES.escala[0], HOY_RANGES.escala[1]);
   const escala = e.nb<=1 ? "Marca Esencial" : e.nb===2 ? "Marca en Expansión" : "Marca Sistema";
 
-  return {
-    espectro, morfo, textura, ritmo, tono, escala,
-    se, so, sr, sp,
-    ma:m.na, mb:m.nb, ta:t.na, tb:t.nb, ra:r.na, rb:r.nb,
-    tna:tn.na, tnb:tn.nb, ea:e.na, eb:e.nb
-  };
+  return Object.assign({}, hoy, { escala, ea:e.na, eb:e.nb, ideal });
+}
+
+// ── Brecha entre lo que tienen (hoy) y lo que quieren (ideal) ──
+function tendencia(k, src){
+  if(k==='espectro') return '';
+  const na = src[NA_KEY[k]];
+  if(na===2) return `Se inclina hacia ${POLE_SHORT[k][0]}`;
+  if(na===1) return `Se inclina hacia ${POLE_SHORT[k][1]}`;
+  return '';
+}
+
+function calcBrechas(p){
+  const luz = n => (n==="Éter Minimal" || n==="Prisma Vibrante");
+  const items = STYLE_KEYS.map(k => {
+    const hoy = p[k], ideal = p.ideal[k];
+    let d;
+    if(k==='espectro') d = hoy===ideal ? 0 : (luz(hoy)===luz(ideal) ? 1 : 3);
+    else d = Math.abs(p[NA_KEY[k]] - p.ideal[NA_KEY[k]]);
+    return {
+      k, label:DIM_LABELS[k], hoy, ideal, d,
+      nivel: d===0 ? 'ok' : d===1 ? 'matiz' : 'brecha',
+      icon:  d===0 ? '✓'  : d===1 ? '≈'     : '↔',
+      texto: d===0 ? 'Alineado' : d===1 ? 'Ajuste fino' : 'Brecha',
+      tendHoy: tendencia(k, p), tendIdeal: tendencia(k, p.ideal)
+    };
+  });
+  const alineadas = items.filter(i => i.d===0).length;
+  const brechas   = items.filter(i => i.d>=2).length;
+  let mayor = null;
+  items.forEach(i => { if(i.d>=2 && (!mayor || i.d>mayor.d)) mayor = i; });
+  return { items, alineadas, brechas, mayor };
+}
+
+function buildComparisonHTML(p){
+  const g = calcBrechas(p);
+  const rows = g.items.map(it => {
+    const hd = perfiles[it.k][it.hoy], id = perfiles[it.k][it.ideal];
+    const sh = [hd ? hd.sub : '', it.tendHoy].filter(Boolean).join('<br>');
+    const si = [id ? id.sub : '', it.tendIdeal].filter(Boolean).join('<br>');
+    return `<div class="cmp-row">
+      <div class="cmp-top"><span class="cmp-dim">${it.label}</span><span class="cmp-chip ${it.nivel}">${it.icon} ${it.texto}</span></div>
+      <div class="cmp-cols">
+        <div class="cmp-col"><div class="k hoy">Hoy</div><div class="n">${it.hoy}</div><div class="s">${sh}</div></div>
+        <div class="cmp-col"><div class="k ideal">Querés</div><div class="n">${it.ideal}</div><div class="s">${si}</div></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const narrativa = g.mayor
+    ? `Tu mayor distancia está en <b>${g.mayor.label}</b>: hoy tu marca es <b>${g.mayor.hoy}</b> y querés que sea <b>${g.mayor.ideal}</b>. Es el primer lugar donde conviene trabajar, porque ahí lo que mostrás y lo que querés proyectar más se separan.`
+    : `Tu marca de hoy está bastante alineada con la que querés. El trabajo ahora es sostener esa coherencia a medida que el negocio crece y se suman piezas y canales.`;
+
+  return `
+    <div class="pdf-sec">Tu marca hoy vs. la que querés</div>
+    <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px;line-height:1.7">«Hoy» sale de tus respuestas sobre tu marca actual; «Querés» de cómo te gustaría que fuera. La distancia entre ambas es donde está el trabajo estratégico. Tené en cuenta que «hoy» refleja tu percepción: en la sesión lo contrastamos con tus piezas reales.</div>
+    <div class="cmp-sum">
+      <div class="cmp-stat"><b>${g.alineadas} de 5</b><span>dimensiones alineadas</span></div>
+      <div class="cmp-stat"><b>${g.brechas}</b><span>con brecha importante</span></div>
+      <div class="cmp-stat"><b style="font-size:13px;line-height:1.3">${g.mayor ? g.mayor.label : 'Ninguna'}</b><span>mayor brecha</span></div>
+    </div>
+    <div class="cmp-wrap">${rows}</div>
+    <div class="diag-block" style="margin-bottom:22px">
+      <div class="diag-label">Lo que esto significa</div>
+      <div class="diag-text">${narrativa}</div>
+    </div>`;
 }
 
 // ── Frase de apertura personalizada ──
@@ -838,11 +951,15 @@ function calcAlertas(p) {
 
 // ── Mensaje de WhatsApp según madurez ──
 function buildWAMessage(p, madurez) {
-  const perfilStr = `${p.espectro} · ${p.morfo} · ${p.textura} · ${p.ritmo} · ${p.tono} · ${p.escala}`;
+  const hoyStr   = [p.espectro, p.morfo, p.textura, p.ritmo, p.tono, p.escala].join(' · ');
+  const idealStr = [p.ideal.espectro, p.ideal.morfo, p.ideal.textura, p.ideal.ritmo, p.ideal.tono].join(' · ');
+  const g = calcBrechas(p);
+  const brechaStr = g.mayor ? `${g.mayor.label} (hoy ${g.mayor.hoy} → quiero ${g.mayor.ideal})` : 'ninguna importante, estoy bastante alineado/a';
+  const bloque = `Mi marca hoy: ${hoyStr}\n\nLa marca que quiero: ${idealStr}\n\nMayor brecha: ${brechaStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)`;
   const mensajes = {
-    "Consolidada": `Hola! Completé el Test de ADN Visual de Chromalab. Mi marca tiene un sistema coherente, pero el diagnóstico me dejó una pregunta: si mi sistema sobrevive sin mí cuando escale canales o delegue la ejecución.\n\nMis perfiles: ${perfilStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)\n\n¿Podemos agendar una sesión para ponerlo a prueba?`,
-    "En desarrollo": `Hola! Completé el Test de ADN Visual de Chromalab y hay tensiones sin resolver en mi identidad visual.\n\nMis perfiles: ${perfilStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)\n\nMe gustaría agendar una sesión para resolver esas inconsistencias.`,
-    "Emergente": `Hola! Completé el Test de ADN Visual de Chromalab. Mi identidad visual está en etapa inicial y quiero definirla con criterio.\n\nMis perfiles: ${perfilStr}\n\nMadurez de marca: ${madurez.nivel} (${madurez.pct}%)\n\n¿Cuándo podemos hablar para arrancar?`,
+    "Consolidada": `Hola! Completé el Test de ADN Visual de Chromalab. Mi marca tiene un sistema coherente, pero el diagnóstico me dejó una pregunta: si mi sistema sobrevive sin mí cuando escale canales o delegue la ejecución.\n\n${bloque}\n\n¿Podemos agendar una sesión para ponerlo a prueba?`,
+    "En desarrollo": `Hola! Completé el Test de ADN Visual de Chromalab y hay tensiones entre mi marca de hoy y la que quiero lograr.\n\n${bloque}\n\nMe gustaría agendar una sesión para resolver esas brechas.`,
+    "Emergente": `Hola! Completé el Test de ADN Visual de Chromalab. Mi identidad visual está en etapa inicial y quiero definirla con criterio.\n\n${bloque}\n\n¿Cuándo podemos hablar para arrancar?`,
   };
   return encodeURIComponent(mensajes[madurez.nivel] || mensajes["Emergente"]);
 }
@@ -851,17 +968,19 @@ function buildWAMessage(p, madurez) {
 // RADAR
 // ─────────────────────────────────────────────────────────────────────────────
 function calcRadarScores(p) {
+  const I = p.ideal;
+  const bin = (na, nb) => [na, nb, Math.max(0, 3-Math.abs(na-nb))];
   return {
-    espectroScores: { labels:["Éter","Ónix","Raíz","Prisma"], values:[p.se,p.so,p.sr,p.sp], max:3 },
-    morfoScores:    { labels:["Estructural","Orgánico","Híbrido"], values:[p.ma, p.mb, Math.max(0, 5-Math.abs(p.ma-p.mb))], max:5 },
-    texturaScores:  { labels:["Cristal","Fibra","Tectónico"],      values:[p.ta, p.tb, Math.max(0, 5-Math.abs(p.ta-p.tb))], max:5 },
-    ritmoScores:    { labels:["Cadencioso","Cinético","Síncopa"],  values:[p.ra, p.rb, Math.max(0, 5-Math.abs(p.ra-p.rb))], max:5 },
-    tonoScores:     { labels:["Directa","Evocadora","Matizada"],   values:[p.tna, p.tnb, Math.max(0, 5-Math.abs(p.tna-p.tnb))], max:5 },
-    escalaScores:   { labels:["Logo","Sistema","Equilibrio"],      values:[p.ea, p.eb, Math.max(0, 4-Math.abs(p.ea-p.eb))], max:4 },
+    espectroScores: { labels:["Éter","Ónix","Raíz","Prisma"], values:[p.se,p.so,p.sr,p.sp], values2:[I.se,I.so,I.sr,I.sp], max:2 },
+    morfoScores:    { labels:["Estructural","Orgánico","Híbrido"], values:bin(p.ma,p.mb),   values2:bin(I.ma,I.mb),   max:3 },
+    texturaScores:  { labels:["Cristal","Fibra","Tectónico"],      values:bin(p.ta,p.tb),   values2:bin(I.ta,I.tb),   max:3 },
+    ritmoScores:    { labels:["Cadencioso","Cinético","Síncopa"],  values:bin(p.ra,p.rb),   values2:bin(I.ra,I.rb),   max:3 },
+    tonoScores:     { labels:["Directa","Evocadora","Matizada"],   values:bin(p.tna,p.tnb), values2:bin(I.tna,I.tnb), max:3 },
+    escalaScores:   { labels:["Logo","Sistema","Equilibrio"],      values:[p.ea,p.eb,Math.max(0, 4-Math.abs(p.ea-p.eb))], max:4 },
   };
 }
 
-function drawRadar(canvas, labels, values, winnerIdx, maxVal) {
+function drawRadar(canvas, labels, values, winnerIdx, maxVal, values2) {
   const W = 160, H = 160;
   const R = Math.min(W,H)*0.36;
   const n = labels.length;
@@ -915,6 +1034,25 @@ function drawRadar(canvas, labels, values, winnerIdx, maxVal) {
   ctx.strokeStyle = '#8b5cf6';
   ctx.lineWidth = 1.5;
   ctx.stroke();
+
+  // Polígono IDEAL (lo que querés): magenta punteado
+  if(values2) {
+    ctx.beginPath();
+    angles.forEach((a,i) => {
+      const r = R*(values2[i]/maxVal);
+      const x = cxS + r*Math.cos(a);
+      const y = cyS + r*Math.sin(a);
+      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    });
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(217,70,239,0.10)';
+    ctx.fill();
+    ctx.setLineDash([4,3]);
+    ctx.strokeStyle = '#d946ef';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
 
   // Puntos en vértices
   angles.forEach((a,i) => {
@@ -991,13 +1129,15 @@ function showResult() {
     { title:"Madurez de Sistema",  rd:rs.escalaScores,   winner:["Marca Esencial","Marca Sistema","Marca en Expansión"].indexOf(p.escala)===-1 ? 1 : ( p.escala==="Marca Esencial" ? 0 : p.escala==="Marca Sistema" ? 1 : 2 ) },
   ];
 
-  const radarCardsHTML = radarDefs.map((d,i) =>
-    `<div class="radar-card">
+  const radarCardsHTML = radarDefs.map((d,i) => {
+    const hasIdeal = !!d.rd.values2;
+    return `<div class="radar-card">
       <div class="radar-title">${d.title}</div>
       <canvas id="rc${i}" width="160" height="160"></canvas>
+      ${hasIdeal ? '<div class="radar-legend"><span class="lg-hoy">● Hoy</span><span class="lg-ideal">◌ Querés</span></div>' : ''}
       <div class="radar-winner">${pNames[i]}</div>
-    </div>`
-  ).join('');
+    </div>`;
+  }).join('');
 
   const apertura = calcApertura(p);
   const madurez  = calcMadurez(p);
@@ -1010,7 +1150,11 @@ function showResult() {
     "En desarrollo": "Con este diagnóstico como base, en 30 minutos identificamos cuáles son exactamente los ajustes puntuales que te separan de un sistema consolidado — qué está funcionando, qué tensión lo está frenando y cuál es el primer paso concreto para cerrar esa brecha.",
     "Emergente":     "Con este diagnóstico como base, en 30 minutos trazamos el mapa de tu identidad desde cero pero con criterio: qué definir primero, qué errores caros evitar y cuál es el primer paso concreto para que tu marca nazca como sistema y no como un logo suelto.",
   };
-  const ctaCopy = ctaCopies[madurez.nivel] || ctaCopies["En desarrollo"];
+  const _g = calcBrechas(p);
+  const gapCTA = _g.mayor
+    ? ` Además, vamos a poner foco en tu mayor brecha — ${_g.mayor.label}: de ${_g.mayor.hoy} a ${_g.mayor.ideal} — para que lo que mostrás se acerque a lo que querés proyectar.`
+    : ` Y como tu marca de hoy ya está bastante alineada con la que querés, nos enfocamos en sostener esa coherencia a medida que crezcas.`;
+  const ctaCopy = (ctaCopies[madurez.nivel] || ctaCopies["En desarrollo"]) + gapCTA;
 
   const alertasHTML = alertas.map((a,i) =>
     `<li><div class="alerta-icon">${i+1}</div><span>${a}</span></li>`
@@ -1027,8 +1171,11 @@ function showResult() {
       <div class="pdf-accent"></div>
       <div class="pdf-result-body">
 
-        <div class="pdf-sec">Tu ADN Visual — las 6 dimensiones</div>
-        <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px;line-height:1.7">El Test de ADN Visual analiza tu identidad en 6 ejes independientes. Juntos forman un sistema: cuando están alineados, tu marca comunica con coherencia — y eso se traduce en reconocimiento y confianza. Cuando hay tensión entre ellos, hay una oportunidad de trabajo.</div>
+        ${buildComparisonHTML(p)}
+
+        <div class="pdf-divider"></div>
+        <div class="pdf-sec">Tu marca hoy — las 6 dimensiones</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px;line-height:1.7">Este es el perfil de tu identidad actual en 6 ejes independientes. Juntos forman un sistema: cuando están alineados, tu marca comunica con coherencia — y eso se traduce en reconocimiento y confianza. Cuando hay tensión entre ellos, hay una oportunidad de trabajo.</div>
         <div class="pdf-grid">${cardsHTML}</div>
 
         <div class="pdf-divider"></div>
@@ -1057,7 +1204,7 @@ function showResult() {
 
         <div class="pdf-divider"></div>
         <div class="pdf-sec">Análisis radar por dimensión</div>
-        <div style="font-size:10px;color:var(--text-dim);margin-bottom:12px;font-style:italic">Cuanto mayor es el área sombreada en cada eje, más fuerte es ese perfil en tu marca.</div>
+        <div style="font-size:10px;color:var(--text-dim);margin-bottom:12px;font-style:italic">El polígono violeta es tu marca hoy; el magenta punteado, la que querés. Cuanto mayor es el área en cada eje, más fuerte es ese perfil.</div>
         <div class="radar-grid">${radarCardsHTML}</div>
 
         <div class="pdf-divider"></div>
@@ -1098,7 +1245,7 @@ function showResult() {
   requestAnimationFrame(() => {
     radarDefs.forEach((d,i) => {
       const canvas = document.getElementById('rc'+i);
-      if(canvas) drawRadar(canvas, d.rd.labels, d.rd.values, d.winner, d.rd.max);
+      if(canvas) drawRadar(canvas, d.rd.labels, d.rd.values, d.winner, d.rd.max, d.rd.values2);
     });
 
     const waBtn = document.getElementById('wa-btn');
@@ -1125,11 +1272,18 @@ function restart() {
 // ─────────────────────────────────────────────────────────────────────────────
 function renderQ() {
   const q = questions[current];
-  const ci = catIndexOf(current);
-  document.getElementById('prog-section').textContent = `Dimensión ${ci+1} de 6 · ${q.section}`;
+  const isHoy = q.mode === 'hoy';
+  const parte = isHoy ? 1 : 2;
+  document.getElementById('prog-section').textContent = `Parte ${parte} de 2 · ${isHoy ? 'Tu marca hoy' : 'La marca que querés'} · ${q.section}`;
   document.getElementById('prog-count').textContent   = `${current+1} / ${TOTAL}`;
   document.getElementById('prog-fill').style.width    = `${Math.round(((current+1)/TOTAL)*100)}%`;
   document.getElementById('sec-pill').textContent     = q.section;
+  const mp = document.getElementById('mode-pill');
+  mp.textContent = isHoy ? 'Hoy · cómo es' : 'Ideal · cómo querés que sea';
+  mp.className   = 'mode-pill ' + q.mode;
+  document.getElementById('q-hint').textContent = isHoy
+    ? 'Respondé según cómo es tu marca hoy, aunque no sea como te gustaría.'
+    : 'Ahora respondé según cómo te gustaría que fuera, aunque hoy sea distinto.';
   document.getElementById('q-num').textContent        = `Pregunta ${current+1}`;
   document.getElementById('q-text').textContent       = q.text;
 
@@ -1204,7 +1358,19 @@ function saveEmail(email) {
   try { localStorage.setItem('chromalab_adn_email', email); } catch(e) {}
 }
 
+function updateModalTeaser() {
+  try {
+    const el = document.getElementById('modal-text');
+    if(!el) return;
+    const g = calcBrechas(calcPerfiles());
+    el.textContent = g.mayor
+      ? `Tu diagnóstico está listo: ${g.alineadas} de 5 dimensiones alineadas entre tu marca de hoy y la que querés, y una brecha importante en ${g.mayor.label}. Dejanos tu correo para ver el detalle y descargarlo en PDF.`
+      : `Tu diagnóstico está listo: tu marca de hoy y la que querés están bastante alineadas (${g.alineadas} de 5 dimensiones). Dejanos tu correo para ver el detalle y descargarlo en PDF.`;
+  } catch(e) {}
+}
+
 function openEmailModal() {
+  updateModalTeaser();
   const overlay = document.getElementById('email-modal');
   overlay.style.display = 'flex';
   if (document.activeElement) document.activeElement.blur();
@@ -1250,7 +1416,9 @@ document.getElementById('modal-submit').addEventListener('click', async () => {
 });
 
 function buildPayload(p, m) {
+  const g = calcBrechas(p);
   return {
+    // "Hoy": mantiene los nombres de columna originales
     espectro:   p.espectro,
     morfologia: p.morfo,
     textura:    p.textura,
@@ -1258,6 +1426,14 @@ function buildPayload(p, m) {
     tono:       p.tono,
     escala:     p.escala,
     madurez:    `${m.nivel} (${m.pct}%)`,
+    // "Ideal": columnas nuevas
+    espectroIdeal:   p.ideal.espectro,
+    morfologiaIdeal: p.ideal.morfo,
+    texturaIdeal:    p.ideal.textura,
+    ritmoIdeal:      p.ideal.ritmo,
+    tonoIdeal:       p.ideal.tono,
+    alineadas:       `${g.alineadas}/5`,
+    mayorBrecha:     g.mayor ? `${g.mayor.label}: ${g.mayor.hoy} → ${g.mayor.ideal}` : '',
   };
 }
 
@@ -1304,6 +1480,13 @@ async function sendData(email, resultUrl, perfilesData = {}) {
         tono:       perfilesData.tono       || '',
         escala:     perfilesData.escala     || '',
         madurez:    perfilesData.madurez    || '',
+        espectroIdeal:   perfilesData.espectroIdeal   || '',
+        morfologiaIdeal: perfilesData.morfologiaIdeal || '',
+        texturaIdeal:    perfilesData.texturaIdeal    || '',
+        ritmoIdeal:      perfilesData.ritmoIdeal      || '',
+        tonoIdeal:       perfilesData.tonoIdeal       || '',
+        alineadas:       perfilesData.alineadas       || '',
+        mayorBrecha:     perfilesData.mayorBrecha     || '',
         date:       new Date().toISOString(),
       })
     });
